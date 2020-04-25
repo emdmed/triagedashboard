@@ -1,13 +1,16 @@
 const scorePatient = (patient)=>{
 
+    console.log("before dx: " , patient.ruleOut)
+
     let activeSypmtoms = [];
 
     //rule out
     for(key in patient.ruleOut){
+        console.log(patient.ruleOut[key])
         if(patient.ruleOut[key] === true){
             console.log("patient ruled out! because: ", key, " is true");
                 patient.score = 100;
-                return {patient, message: `patient ruled out! because: ${key} is true. Patient score is ${patient.score}`}
+                return patient;
         }
     }
 

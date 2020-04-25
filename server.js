@@ -24,13 +24,17 @@ app.use(bodyParser.json());
 //ROUTES
 
 app.get("/", function(req, res){
-    res.send("Hello, this is Triage Api");
+    res.sendFile(__dirname + "./client")
+})
+
+app.get("/paciente", function(req, res){
+    res.sendFile(__dirname + "./client/paciente.html")
 })
 
 //Test one patient scoring
 app.get("/score_patient", async function(req, res){
     let data = test_patient;
-    
+
     //send to api handler here
     let scoredPatient = await api_handler.scorePatient(data);
 
@@ -40,7 +44,25 @@ app.get("/score_patient", async function(req, res){
     res.status(200).end();
 })
 
+app.get("/patient_example", async function(req, res){
+    let patient = await api_handler.getPatientExample
+    res.send(patient).status(200).end();
+})
+
 app.get("/patient_list", async function(req, res){
     let patientList = await api_handler.seePatientList()
     res.send(patientList).status(200).end();
+})
+
+app.post("/send_patient_to_server", async function(req, res){
+    let patient = req.body;
+    console.log("received patient ", patient);
+
+    //send to api handler here
+    let scoredPatient = await api_handler.scorePatient(patient);
+
+    //send scored patient to patient list
+    await api_handler.addPatientToPatientList(scoredPatient);
+
+    res.status(200).end();
 })

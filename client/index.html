@@ -1,0 +1,65 @@
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <script src="https://code.jquery.com/jquery-3.1.0.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.9/umd/popper.min.js" integrity="sha384-ApNbgh9B+Y1QKtv3Rn7W3mgPxhU9K/ScQsAP7hUibX39j7fakFPskvXusvfa0b4Q" crossorigin="anonymous"></script>
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css" integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous">
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js" integrity="sha384-JZR6Spejh4U02d8jOt6vLEHfe/JQGiRRSQQxSfFWpi1MquVdAyjUar5+76PVCmYl" crossorigin="anonymous"></script>  
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link href="https://fonts.googleapis.com/css?family=Montserrat&display=swap" rel="stylesheet">
+    <!--<link rel="stylesheet" type="text/css" href="css/index.css">-->
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Tragix</title>
+</head>
+<body onload="requestPatientExample()">
+    <div class="container text-center">
+        <h1 class="text-center">Triagix</h1>
+        <hr>
+        <button class="btn btn-sm btn-primary" id="getPatientList_btn">get patient list</button>
+        <button class="btn btn-sm btn-danger" id="addTestPatient_btn">add test patient</button>
+        <hr>
+        <button class="btn btn-success" data-toggle="modal" data-target="#clinic_triage_modal">Agregar paciente al triage</button>
+    </div>
+    <hr>
+
+    <div class="container text-center">
+        <div class="row">
+            <div class="col" id="patient_cards_here"></div>
+            <div class="col" id="clinic_ruleout"></div>
+        </div>
+    </div>
+
+    <!--Clinic triage modal-->
+    <!-- Modal -->
+    <div class="modal fade" id="clinic_triage_modal" tabindex="-1" role="dialog" aria-labelledby="exampleModalCenterTitle" aria-hidden="true">
+        <div class="modal-dialog modal-dialog-centered" role="document">
+        <div class="modal-content">
+            <div class="modal-header">
+            <h5 class="modal-title" id="exampleModalCenterTitle">Agregar paciente a Triage</h5>
+            <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                <span aria-hidden="true">&times;</span>
+            </button>
+            </div>
+            <div class="modal-body">
+                <p>Telefono</p>
+                <input type="number" placeholder="Telefono celular" id="patient_phone" value="11">
+                <hr>
+                <p>Edad</p>
+                <input type="number" placeholder="Edad" id="patient_age">
+            </div>
+            <div class="modal-footer">
+            <button type="button" class="btn btn-secondary" data-dismiss="modal">Cerrar</button>
+            <button type="button" class="btn btn-primary" id="send_patient_btn">Aceptar</button>
+            </div>
+        </div>
+        </div>
+    </div>
+
+
+    <script type="text/javascript" src="./js/clinicTriageQuestions.js"></script>
+    <script type="text/javascript" src="./js/main.js"></script>
+</body>
+</html>
