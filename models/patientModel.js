@@ -10,7 +10,8 @@ var Patient = {
         chemoInLast2Months: false,
         dyspnea: false,
         acuteMotorImpairment: false,
-        chestPain: false
+        chestPain: false,
+        hematemesis: false
     },
     symptoms: {
         fever: {
@@ -48,7 +49,7 @@ var Patient = {
                 nine: false
             }
         },
-        throatParin: {
+        throatPain: {
             isPresent: false,
             voiceChange: false,
             durationInDays: null
@@ -77,6 +78,13 @@ var Patient = {
                     isWhite: false,
                     isRed: false
                 }
+            }
+        },
+        diarrhea: {
+            isPresent: false,
+            color: {
+                isRed: false,
+                isBlack: false
             }
         }
     }

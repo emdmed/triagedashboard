@@ -32,6 +32,6 @@ app.get("/score_patient", async function(req, res){
     let data = test_patient;
     //send to api handler here
     let scoredPatient = await api_handler.scorePatient(data);
-    console.log("Scored Patient: ", scoredPatient)
+    //console.log("Scored Patient: ", scoredPatient)
     res.status(200).end();
 })
