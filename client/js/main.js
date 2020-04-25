@@ -15,7 +15,6 @@ function requestPatientExample(){
 }
 
 $("body").on("click", "#send_patient_btn", function(){
-
     //validation pending
 
     let phone = $("#patient_phone").val();
@@ -25,9 +24,6 @@ $("body").on("click", "#send_patient_btn", function(){
     PATIENT_EXAMPLE.info.age = age
 
     render_clinic_triage()
-
-
-
 })
 
 $("body").on("click", "#getPatientList_btn", function(){
@@ -82,11 +78,21 @@ function render_clinic_triage(){
                 $("#clinic_triage_modal").find(".modal-body").append(`
     
                 <button class="btn btn-outline-primary ruleout_btn" id="${key1}">${questions[key2]}</button>    
+                <hr>
     
             `)
             }
         }
     }
+
+    //re render continue button
+    $("#clinic_triage_modal").find(".modal-footer").empty();
+    $("#clinic_triage_modal").find(".modal-footer").append(`
+    
+        <button type="button" class="btn btn-secondary" data-dismiss="modal">Cerrar</button>
+        <button type="button" class="btn btn-primary" id="end_patient_modal_btn">Continuar</button>
+
+    `)
 }
 
 $("body").on("click", ".ruleout_btn", function(){
@@ -119,7 +125,31 @@ $("body").on("click", ".ruleout_btn", function(){
         }
 
     })
+
+})
+
+//reset add_patient modal when hidden
+$('#clinic_triage_modal').on('hidden.bs.modal', function () {
+    $("#clinic_triage_modal").find(".modal-body").empty();
+    $("#clinic_triage_modal").find(".modal-body").append(`
     
+        <p>Telefono</p>
+        <input type="number" placeholder="Telefono celular" id="patient_phone" value="11">
+        <hr>
+        <p>Edad</p>
+        <input type="number" placeholder="Edad" id="patient_age">
 
+    `);
 
+    $("#clinic_triage_modal").find(".modal-footer").empty();
+    $("#clinic_triage_modal").find(".modal-footer").append(`
+    
+        <button type="button" class="btn btn-secondary" data-dismiss="modal">Cerrar</button>
+        <button type="button" class="btn btn-primary" id="send_patient_btn">Continuar</button>
+
+    `)
+});
+
+$("body").on("click", "#end_patient_modal_btn", function(){
+    //continue
 })
