@@ -30,8 +30,17 @@ app.get("/", function(req, res){
 //Test one patient scoring
 app.get("/score_patient", async function(req, res){
     let data = test_patient;
+    
     //send to api handler here
     let scoredPatient = await api_handler.scorePatient(data);
-    //console.log("Scored Patient: ", scoredPatient)
+
+    //send scored patient to patient list
+    await api_handler.addPatientToPatientList(scoredPatient);
+
     res.status(200).end();
+})
+
+app.get("/patient_list", async function(req, res){
+    let patientList = await api_handler.seePatientList()
+    res.send(patientList).status(200).end();
 })

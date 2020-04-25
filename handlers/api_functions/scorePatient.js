@@ -27,15 +27,15 @@ const scorePatient = (patient)=>{
     for(key in patient.symptoms){
         if(patient.symptoms[key].isPresent === true){
             console.log(key, " is true");
-          
             //activeSypmtoms.push({[key]: patient.symptoms[key]});
         }
     }
 
     diagnose(patient);
 
-    //console.log("Active symptoms: ", activeSypmtoms);
     console.log("Patient score: ", patient.score);
+
+    return patient;
 
 }
 
@@ -87,6 +87,16 @@ function diagnose(patient){
         patient.score = score + 15;
     }
 
+    //infeccion urinaria baja
+    if(patient.symptoms.urinatingPain.isPresent == true && patient.symptoms.fever.isPresent === false){
+        console.log("infeccion urinaria baja")
+        patient.score = score + 3;
+    } else if (patient.symptoms.urinatingPain.isPresent == true && patient.symptoms.fever.isPresent === true){
+        console.log("infeccion urinaria alta o complicada");
+        patient.score = score + 10;
+    }
+
+    return patient;
 
 }
 
