@@ -1,8 +1,5 @@
 [x] - re render default modal when modal is closed
-[] - Login page for admin the send admin.html
-[] - request patient list on html load
+[x] - order patients by score value in frontend when requested from server
+[] - Login page for admin then send admin.html
+[x] - request patient list on html load ** it is now in onload function
 
-**continue from main.js ->
-$("body").on("click", "#end_patient_modal_btn", function(){
-    //continue
-})

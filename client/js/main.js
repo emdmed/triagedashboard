@@ -2,6 +2,8 @@
 let PATIENT_EXAMPLE;
 let patient_example; //write on this one only
 console.log("main js loaded")
+moment.locale('es')
+console.log(moment().format('MMMM Do YYYY, h:mm:ss a'));
 
 function requestPatientExample(){
     $.ajax({
@@ -12,6 +14,71 @@ function requestPatientExample(){
             PATIENT_EXAMPLE = data;
             console.log(PATIENT_EXAMPLE);
             console.log("Patient model retrieved");
+        }
+    })
+
+
+    //request list
+    $.ajax({
+        url: "/patient_list",
+        method: "GET",
+        success: function(res){
+            let data = res
+            let priority_class;
+
+            $("#patient_cards_here").empty();
+
+            //order data by data.score
+            let orderedData = data.sort((a,b) =>  b.score-a.score)
+
+            //console.log("data ", data);
+            //.log("Ordered data ", orderedData);
+
+     
+
+            orderedData.forEach(element => {
+
+                console.log(element.score)
+
+                //set card color according priority score
+                if(element.score >= 0 && element.score < 30){
+                    priority_class = "border-success"
+                } else if(element.score >= 30 && element.socre < 60){
+                    priority_class = "border-primary"
+                } else if(element.score > 60){
+                    priority_class = "border-danger"
+                }
+
+                //set waiting time
+                let waitingTime;
+                moment.locale('es');
+                waitingTime = moment().startOf(element.info.date).fromNow(); 
+                console.log(moment(element.info.date), moment()); 
+
+                console.log("priority class", priority_class)
+
+                $("#patient_cards_here").append(`
+                
+                    <div class="card text-center mx-auto ${priority_class}" id="${element.info.phone}">
+                        <div class="card-body text-center">
+                            <div class="form-row align-items-center">
+                                <div class="col-auto pl-3 pr-3 ">
+                                    <h4>${element.info.age} años</h4>
+                                </div>
+                                <div class="col-auto pl-3 pr-3">
+                                    <p class="card-text"><small class="text-muted">Esperando ${waitingTime}</small></p>
+                                </div>
+                                <div class="col-auto pl-3 pr-3">
+                                    <a class="btn btn-primary-sm" href="https://api.whatsapp.com/send?phone=${element.info.phone}&text=Yapuedeingresar">Hacer pasar</a>
+                                    <button class="btn btn-outline-primary-sm" >Atendido</button>
+                                    <button class="btn btn-outline-primary-sm" >Ver síntomas</button>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                `)
+            });
         }
     })
 }
@@ -25,41 +92,61 @@ $("body").on("click", "#send_patient_btn", function(){
 
     let phone = $("#patient_phone").val();
     let age = $("#patient_age").val();
+    let date = new Date();
 
     patient_example.info.phone = phone;
-    patient_example.info.age = age
+    patient_example.info.age = age;
+    patient_example.info.date = date;
 
     render_clinic_triage()
 })
 
 $("body").on("click", ".getPatientList_btn", function(){
 
+    //request list
     $.ajax({
         url: "/patient_list",
         method: "GET",
         success: function(res){
             let data = res
-            console.log("data ", data);
+            let priority_class;
 
             $("#patient_cards_here").empty();
 
             //order data by data.score
-
             let orderedData = data.sort((a,b) =>  b.score-a.score)
 
-            console.log("Ordered data ", orderedData);
+            console.log("data ", data);
+            //console.log("Ordered data ", orderedData);
+
+     
 
             orderedData.forEach(element => {
+                //set card color according priority score
+                if(element.score >= 0 && element.score < 30){
+                    priority_class = "border-success"
+                } else if(element.score >= 30 && element.score < 60){
+                    priority_class = "border-primary"
+                } else if(element.score > 60){
+                    priority_class = "border-danger"
+                }
+
+                //set waiting time
+                let waitingTime;
+                moment.locale('es');
+                waitingTime = moment().startOf(element.info.date).fromNow(); 
+                console.log(moment(element.info.date), moment()); 
+
                 $("#patient_cards_here").append(`
                 
-                    <div class="card text-center mx-auto" id="${element.info.phone}">
+                    <div class="card text-center mx-auto ${priority_class}" id="${element.info.phone}">
                         <div class="card-body text-center">
                             <div class="form-row align-items-center">
                                 <div class="col-auto pl-3 pr-3 ">
                                     <h4>${element.info.age} años</h4>
                                 </div>
                                 <div class="col-auto pl-3 pr-3">
-                                    <p class="card-text"><small class="text-muted">Esperando hace: x mins</small></p>
+                                    <p class="card-text"><small class="text-muted">Esperando ${waitingTime}</small></p>
                                 </div>
                                 <div class="col-auto pl-3 pr-3">
                                     <a class="btn btn-primary-sm" href="https://api.whatsapp.com/send?phone=${element.info.phone}&text=Yapuedeingresar">Hacer pasar</a>
@@ -134,7 +221,6 @@ $("body").on("click", ".ruleout_btn", function(){
         contentType: "application/JSON",
         data: JSON.stringify(patient_example),
         success: function(res){
-            console.log(res);
             $("#clinic_triage_modal").find(".modal-body").empty();
             $("#clinic_triage_modal").find(".modal-body").append(`
             

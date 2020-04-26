@@ -2,7 +2,8 @@ var Patient = {
     info: {
         gender: false,
         age: null,
-        phone: "5491163976590"
+        phone: "5491163976590",
+        date: false
     },
     ruleOut: {
         intensiveCareInLastMonth: false,
