@@ -23,12 +23,13 @@ app.use(bodyParser.json());
 
 //ROUTES
 
-app.get("/", function(req, res){
-    res.sendFile(__dirname + "./client")
+app.get("/admin", function(req, res){
+    //send first the login page then admin //TODO
+    res.sendFile(__dirname + "/client/admin.html")
 })
 
 app.get("/paciente", function(req, res){
-    res.sendFile(__dirname + "./client/paciente.html")
+    res.sendFile(__dirname + "/client/paciente.html")
 })
 
 //Test one patient scoring

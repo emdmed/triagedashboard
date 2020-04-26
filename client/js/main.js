@@ -1,5 +1,7 @@
 //request patient exmple onload
 let PATIENT_EXAMPLE;
+let patient_example; //write on this one only
+console.log("main js loaded")
 
 function requestPatientExample(){
     $.ajax({
@@ -16,35 +18,55 @@ function requestPatientExample(){
 
 $("body").on("click", "#send_patient_btn", function(){
     //validation pending
+    console.log("click");
+
+    //avoid writing on PATIENT_EXAMPLE
+    patient_example = PATIENT_EXAMPLE;
 
     let phone = $("#patient_phone").val();
     let age = $("#patient_age").val();
 
-    PATIENT_EXAMPLE.info.phone = phone;
-    PATIENT_EXAMPLE.info.age = age
+    patient_example.info.phone = phone;
+    patient_example.info.age = age
 
     render_clinic_triage()
 })
 
-$("body").on("click", "#getPatientList_btn", function(){
+$("body").on("click", ".getPatientList_btn", function(){
 
     $.ajax({
         url: "/patient_list",
         method: "GET",
         success: function(res){
             let data = res
+            console.log("data ", data);
 
             $("#patient_cards_here").empty();
 
-            data.forEach(element => {
+            //order data by data.score
+
+            let orderedData = data.sort((a,b) =>  b.score-a.score)
+
+            console.log("Ordered data ", orderedData);
+
+            orderedData.forEach(element => {
                 $("#patient_cards_here").append(`
                 
-                    <div class="card text-center mx-auto" id="${element.info.phone}" style="max-width: 300px">
+                    <div class="card text-center mx-auto" id="${element.info.phone}">
                         <div class="card-body text-center">
-                            <h4 class="text-left">Edad: ${element.info.age}</h4>
-                            <h3>Prioridad: ${element.score}</h3>
-                            <hr>
-                            <a class="btn btn-succes" href="https://api.whatsapp.com/send?phone=${element.info.phone}&text=Yapuedeingresar">Hacer pasar</a>
+                            <div class="form-row align-items-center">
+                                <div class="col-auto pl-3 pr-3 ">
+                                    <h4>${element.info.age} años</h4>
+                                </div>
+                                <div class="col-auto pl-3 pr-3">
+                                    <p class="card-text"><small class="text-muted">Esperando hace: x mins</small></p>
+                                </div>
+                                <div class="col-auto pl-3 pr-3">
+                                    <a class="btn btn-primary-sm" href="https://api.whatsapp.com/send?phone=${element.info.phone}&text=Yapuedeingresar">Hacer pasar</a>
+                                    <button class="btn btn-outline-primary-sm" >Atendido</button>
+                                    <button class="btn btn-outline-primary-sm" >Ver síntomas</button>
+                                </div>
+                            </div>
                         </div>
                     </div>
 
@@ -55,6 +77,7 @@ $("body").on("click", "#getPatientList_btn", function(){
 
 });
 
+//just for testing
 $("body").on("click", "#addTestPatient_btn", function(){
 
     $.ajax({
@@ -99,13 +122,17 @@ $("body").on("click", ".ruleout_btn", function(){
 
     let id = $(this).attr("id");
 
-    PATIENT_EXAMPLE.ruleOut[id] = true;
+    //avoid writing on PATIENT_EXAMPLE
+
+    patient_example = PATIENT_EXAMPLE;
+
+    patient_example.ruleOut[id] = true;
 
     $.ajax({
         url: "/send_patient_to_server",
         method: "POST",
         contentType: "application/JSON",
-        data: JSON.stringify(PATIENT_EXAMPLE),
+        data: JSON.stringify(patient_example),
         success: function(res){
             console.log(res);
             $("#clinic_triage_modal").find(".modal-body").empty();
@@ -152,4 +179,21 @@ $('#clinic_triage_modal').on('hidden.bs.modal', function () {
 
 $("body").on("click", "#end_patient_modal_btn", function(){
     //continue
+
+    //avoid writing on PATIENT_EXAMPLE
+    patient_example = PATIENT_EXAMPLE;
+
+    $.ajax({
+        url: "/send_patient_to_server",
+        method: "POST",
+        contentType: "application/JSON",
+        data: JSON.stringify(patient_example),
+        success: function(res){
+            console.log(res);     
+            $("#clinic_triage_modal").modal("hide");
+            //render patient on ui 
+        }
+
+    })
+
 })
