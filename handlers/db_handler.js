@@ -4,7 +4,8 @@ const PatientModel = require("../models/patientModel");
 const db_handler = {
     createPatient,
     checkPatientPhone,
-    updatePatient
+    updatePatient,
+    getPatientList
 }
 
 
@@ -30,6 +31,11 @@ async function updatePatient(patient){
     }catch(err){
         return false
     }
+}
+
+async function getPatientList(){
+    let patientList = await PatientModel.find();
+    return patientList;
 }
 
 module.exports = db_handler;

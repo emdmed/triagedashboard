@@ -72,7 +72,7 @@ function requestPatientExample(){
                                     <p class="card-text"><small class="text-muted">Esperando ${waitingTime}</small></p>
                                 </div>
                                 <div class="col-auto pl-3 pr-3">
-                                    <a class="btn btn-primary-sm" href="https://web.whatsapp.com/send?phone=${element.info.phone}&text=http://localhost:3000/paciente">Hacer pasar</a>
+                                    <a class="btn btn-primary-sm" href="https://web.whatsapp.com/send?phone=${element.info.phone}&text=https://192.168.0.50:3000/paciente">Hacer pasar</a>
                                     <button class="btn btn-outline-primary-sm" >Atendido</button>
                                     <button class="btn btn-outline-primary-sm" >Ver síntomas</button>
                                 </div>
@@ -152,7 +152,7 @@ $("body").on("click", ".getPatientList_btn", function(){
                                     <p class="card-text"><small class="text-muted">Esperando ${waitingTime}</small></p>
                                 </div>
                                 <div class="col-auto pl-3 pr-3">
-                                    <a class="btn btn-primary-sm" href="https://web.whatsapp.com/send?phone=${element.info.phone}&text=http://localhost:3000/paciente">Hacer pasar</a>
+                                    <a class="btn btn-primary-sm" href="https://web.whatsapp.com/send?phone=${element.info.phone}&text=https://192.168.0.50:3000/paciente">Hacer pasar</a>
                                     <button class="btn btn-outline-primary-sm" >Atendido</button>
                                     <button class="btn btn-outline-primary-sm" >Ver síntomas</button>
                                 </div>

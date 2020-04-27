@@ -51,7 +51,8 @@ app.get("/patient_example", async function(req, res){
 })
 
 app.get("/patient_list", async function(req, res){
-    let patientList = await api_handler.seePatientList()
+    //let patientList = await api_handler.seePatientList()
+    let patientList = await db_handler.getPatientList();
     res.send(patientList).status(200).end();
 })
 
