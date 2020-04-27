@@ -16,5 +16,6 @@ const spanishSymptoms = {
     throatPain: "Dolor de garganta",
     runnyNose: "Mocos por la nariz",
     urinatingPain: "Ardor al orinar",
-    diarrhea: "Diarrea"
+    diarrhea: "Diarrea",
+    vomiting: "Vomitos"
 }

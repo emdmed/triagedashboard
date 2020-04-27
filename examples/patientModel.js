@@ -88,6 +88,9 @@ var Patient = {
                 isRed: false,
                 isBlack: false
             }
+        },
+        vomiting: {
+            isPresent: false
         }
     }
 }

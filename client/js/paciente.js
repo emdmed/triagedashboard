@@ -1,5 +1,23 @@
+//too add symptoms
+//1 - Update patientModel on server
+//2 - Update clinicTriageQuestions on frontend
+//3 - Update class and object change on frontend
+
+
 let PATIENT_EXAMPLE;
 let patient_example;
+
+let abdominalClicks = {
+    abdomen: false,
+    evolution: false
+}
+
+//monitor abdominal clicks
+function monitorAbdominalClicks(){
+    if(abdominalClicks.abdomen === true && abdominalClicks.evolution === true){
+        $("#end_symptom_detail").prop("disabled", false);
+    }
+}
 
 console.log("paciente iniciado")
 
@@ -115,42 +133,46 @@ $("body").on("click", "#abdominalPain", function(){
             <div class="container-fluid text-center mx-auto p-0">
             <img src="./images/triagix/abdomen3.png" class="abdomen-image">
 
-                <div class="row text-center mx-auto" style="height: 20vh">
+                <div class="row text-center mx-auto" style="height: 16vh">
                     <div class="col text-center mx-auto p-0">
-                        <button class="btn btn-outline-primary-sm transparent btn-block mx-auto full-size-button" id="abdomen1">uno</button>
+                        <button class="btn btn-outline-primary-sm transparent btn-block mx-auto full-size-button abdomen" id="one">uno</button>
                     </div>
                     <div class="col text-center mx-auto p-0">
-                        <button class="btn btn-outline-primary-sm transparent btn-block mx-auto full-size-button" id="abdomen2">dos</button>
+                        <button class="btn btn-outline-primary-sm transparent btn-block mx-auto full-size-button abdomen " id="two">dos</button>
                     </div>    
                     <div class="col text-center mx-auto p-0">
-                        <button class="btn btn-outline-primary transparent btn-block mx-auto full-size-button" id="abdomen3">tres</button>
+                        <button class="btn btn-outline-primary transparent btn-block mx-auto full-size-button abdomen" id="three">tres</button>
                     </div>
                 </div>
 
-                <div class="row text-center mx-auto" style="height: 20vh">
+                <div class="row text-center mx-auto" style="height: 16vh">
                     <div class="col text-center mx-auto p-0">
-                        <button class="btn btn-outline-primary-sm transparent btn-block mx-auto full-size-button" id="abdomen4">cuatro</button>
+                        <button class="btn btn-outline-primary-sm transparent btn-block mx-auto full-size-button abdomen" id="four">cuatro</button>
                     </div>
                     <div class="col text-center mx-auto p-0">
-                        <button class="btn btn-outline-primary-sm transparent btn-block mx-auto full-size-button" id="abdomen5">cinco</button>
+                        <button class="btn btn-outline-primary-sm transparent btn-block mx-auto full-size-button abdomen" id="five">cinco</button>
                     </div>    
                     <div class="col text-center mx-auto p-0">
-                        <button class="btn btn-outline-primary-sm transparent btn-block mx-auto full-size-button" id="abdomen6">seis</button>
+                        <button class="btn btn-outline-primary-sm transparent btn-block mx-auto full-size-button abdomen" id="six">seis</button>
                     </div>
                 </div>
 
-                <div class="row text-center mx-auto" style="height: 20vh">
+                <div class="row text-center mx-auto" style="height: 16vh">
                     <div class="col text-center mx-auto p-0">
-                        <button class="btn btn-outline-primary-sm transparent btn-block mx-auto full-size-button" id="abdomen7">siete</button>
+                        <button class="btn btn-outline-primary-sm transparent btn-block mx-auto full-size-button abdomen" id="seven">siete</button>
                     </div>
                     <div class="col text-center mx-auto p-0">
-                        <button class="btn btn-outline-primary-sm transparent btn-block mx-auto full-size-button" id="abdomen8">ocho</button>
+                        <button class="btn btn-outline-primary-sm transparent btn-block mx-auto full-size-button abdomen" id="eight">ocho</button>
                     </div>    
                     <div class="col text-center mx-auto p-0">
-                        <button class="btn btn-outline-primary-sm transparent btn-block mx-auto full-size-button" id="abdomen9">nueve</button>
+                        <button class="btn btn-outline-primary-sm transparent btn-block mx-auto full-size-button abdomen" id="nine">nueve</button>
                     </div>
                 </div>
-            
+                <hr>
+                <p>¿Hace cuántos días?</p>
+                <button class="btn btn-primary-sm abd_evolution" id="1">1 día o menos</button>
+                <button class="btn btn-primary-sm abd_evolution" id="3">de 2 a 3 días</button>
+                <button class="btn btn-primary-sm abd_evolution" id="4">mas de 3 días</button>
             </div>
         `)
 
@@ -159,6 +181,36 @@ $("body").on("click", "#abdominalPain", function(){
         $(this).attr("class", "btn btn-outline-primary");
         patient_example.symptoms.abdominalPain.isPresent = false;
     }
+})
+
+//click on abdomen event
+$("body").on("click", ".abdomen", function(){
+    let id = $(this).attr("id");
+    console.log(id);
+
+    for(key in patient_example.symptoms.abdominalPain.location){
+        if(key === id){
+            console.log(key);
+            patient_example.symptoms.abdominalPain.location[key] = true;
+        }
+    }
+
+    abdominalClicks.abdomen = true;
+    monitorAbdominalClicks();
+})
+
+$("body").on("click", ".abd_evolution", function(){
+    let id = parseInt($(this).attr("id"));
+    if(id === 1){
+        patient_example.symptoms.abdominalPain.durationInDays = 1;
+    }else if (id === 3){
+        patient_example.symptoms.abdominalPain.durationInDays = 3;
+    }else if (id === 4){
+        patient_example.symptoms.abdominalPain.durationInDays = 4;
+    }
+
+    abdominalClicks.evolution = true;
+    monitorAbdominalClicks();
 })
 
 $("body").on("click", "#throatPain", function(){
@@ -203,4 +255,24 @@ $("body").on("click", "#diarrhea", function(){
         $(this).attr("class", "btn btn-outline-primary");
         patient_example.symptoms.diarrhea.isPresent = false;
     }
+})
+
+$("body").on("click", "#vomiting", function(){
+    let thisClass = $(this).attr("class");
+    if(thisClass === "btn btn-outline-primary"){
+        $(this).attr("class", "btn btn-primary");
+        patient_example.symptoms.vomiting.isPresent = true;
+    }else if(thisClass === "btn btn-primary"){
+        $(this).attr("class", "btn btn-outline-primary");
+        patient_example.symptoms.vomiting.isPresent = false;
+    }
+})
+
+
+
+//close detail modal
+$("body").on("click", "#end_symptom_detail", function(){
+    //reset modal
+    $("#symptom_details_modal").find("modal-body").empty();
+    $("#symptom_details_modal").modal("hide");
 })
