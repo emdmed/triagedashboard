@@ -66,6 +66,10 @@ function renderSymptomsFrontend(){
             }
         }
     }
+
+    $("#symptoms_here").append(`
+        <button class="btn btn-block btn-primary" id="end_symptoms">Finalizar</button>
+    `)
 }
 
 $("body").on("click", "#init_sintomas", function(){
@@ -275,4 +279,20 @@ $("body").on("click", "#end_symptom_detail", function(){
     //reset modal
     $("#symptom_details_modal").find("modal-body").empty();
     $("#symptom_details_modal").modal("hide");
+})
+
+//finish loop
+$("body").on("click", "#end_symptoms", function(){
+
+    //send paciente to backend
+    $.ajax({
+        url: "/send_patient_to_server",
+        method: "POST",
+        contentType: "application/JSON",
+        data: JSON.stringify(patient_example),
+        success: function(res){
+            console.log(res);
+            alert("Paciente enviado correctamente");
+        }
+    })
 })
