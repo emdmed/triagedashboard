@@ -299,7 +299,7 @@ $("body").on("click", "#end_symptoms", function(){
 
     //send paciente to backend
     $.ajax({
-        url: "/send_patient_to_server",
+        url: "/update_patient_in_db",
         method: "POST",
         contentType: "application/JSON",
         data: JSON.stringify(patient_example),
