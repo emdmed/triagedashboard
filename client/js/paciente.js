@@ -109,45 +109,47 @@ $("body").on("click", "#abdominalPain", function(){
         //()modal body is already empty)
         //append html
         let detailButtonsWidth = "80px"
+        $("#symptom_details_modal").find(".modal-title").text("Indique la zona donde le duela más")
         $("#symptom_details_modal").find(".modal-body").append(`
 
-            <div class="container-fluid text-center mx-auto">
+            <div class="container-fluid text-center mx-auto p-0">
+            <img src="./images/triagix/abdomen3.png" class="abdomen-image">
 
-                <div class="row text-center mx-auto">
-                    <div class="col-xs-6 text-center mx-auto">
-                        <button class="btn btn-primary-sm mx-auto" style="width:${detailButtonsWidth}">uno</button>
+                <div class="row text-center mx-auto" style="height: 20vh">
+                    <div class="col text-center mx-auto p-0">
+                        <button class="btn btn-outline-primary-sm transparent btn-block mx-auto full-size-button" id="abdomen1">uno</button>
                     </div>
-                    <div class="col-xs-6 text-center mx-auto">
-                        <button class="btn btn-primary-sm mx-auto" style="width:${detailButtonsWidth}">dos</button>
+                    <div class="col text-center mx-auto p-0">
+                        <button class="btn btn-outline-primary-sm transparent btn-block mx-auto full-size-button" id="abdomen2">dos</button>
                     </div>    
-                    <div class="col-xs-6 text-center mx-auto">
-                        <button class="btn btn-primary-sm mx-auto" style="width:${detailButtonsWidth}">tres</button>
+                    <div class="col text-center mx-auto p-0">
+                        <button class="btn btn-outline-primary transparent btn-block mx-auto full-size-button" id="abdomen3">tres</button>
                     </div>
                 </div>
 
-                <div class="row text-center mx-auto">
-                <div class="col-xs-6 text-center mx-auto">
-                    <button class="btn btn-primary-sm mx-auto" style="width:${detailButtonsWidth}">cuatro</button>
+                <div class="row text-center mx-auto" style="height: 20vh">
+                    <div class="col text-center mx-auto p-0">
+                        <button class="btn btn-outline-primary-sm transparent btn-block mx-auto full-size-button" id="abdomen4">cuatro</button>
+                    </div>
+                    <div class="col text-center mx-auto p-0">
+                        <button class="btn btn-outline-primary-sm transparent btn-block mx-auto full-size-button" id="abdomen5">cinco</button>
+                    </div>    
+                    <div class="col text-center mx-auto p-0">
+                        <button class="btn btn-outline-primary-sm transparent btn-block mx-auto full-size-button" id="abdomen6">seis</button>
+                    </div>
                 </div>
-                <div class="col-xs-6 text-center mx-auto">
-                    <button class="btn btn-primary-sm mx-auto" style="width:${detailButtonsWidth}">cinco</button>
-                </div>    
-                <div class="col-xs-6 text-center mx-auto">
-                    <button class="btn btn-primary-sm mx-auto" style="width:${detailButtonsWidth}">seis</button>
-                </div>
-            </div>
 
-            <div class="row text-center text-center mx-auto">
-                <div class="col-xs-6 text-center mx-auto">
-                    <button class="btn btn-primary-sm mx-auto" style="width:${detailButtonsWidth}">siete</button>
+                <div class="row text-center mx-auto" style="height: 20vh">
+                    <div class="col text-center mx-auto p-0">
+                        <button class="btn btn-outline-primary-sm transparent btn-block mx-auto full-size-button" id="abdomen7">siete</button>
+                    </div>
+                    <div class="col text-center mx-auto p-0">
+                        <button class="btn btn-outline-primary-sm transparent btn-block mx-auto full-size-button" id="abdomen8">ocho</button>
+                    </div>    
+                    <div class="col text-center mx-auto p-0">
+                        <button class="btn btn-outline-primary-sm transparent btn-block mx-auto full-size-button" id="abdomen9">nueve</button>
+                    </div>
                 </div>
-                <div class="col-xs-6 text-center mx-auto">
-                    <button class="btn btn-primary-sm mx-auto" style="width:${detailButtonsWidth}">ocho</button>
-                </div>    
-                <div class="col-xs-6 text-center mx-auto">
-                    <button class="btn btn-primary-sm mx-auto" style="width:${detailButtonsWidth}">nueve</button>
-                </div>
-            </div>
             
             </div>
         `)
