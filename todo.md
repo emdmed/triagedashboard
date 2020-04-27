@@ -5,6 +5,8 @@
 [] - patient link ??
     [] - test and implement
 
+[] - send whatsapp from frontend directly -> https://web.whatsapp.com/send?phone=PHONENUMBER
+
 
 [] -//save phone to localstorage
     //avoid 2 different triages by the same phone (on the same day?)
