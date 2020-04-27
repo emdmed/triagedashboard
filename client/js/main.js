@@ -1,4 +1,7 @@
 //request patient exmple onload
+
+// LINK TO SEND WHATSAPP DIRECTLY FROM FRONTEND https://web.whatsapp.com/send?phone=PHONENUMBER
+
 let PATIENT_EXAMPLE;
 let patient_example; //write on this one only
 console.log("main js loaded")

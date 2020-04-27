@@ -67,3 +67,20 @@ app.post("/send_patient_to_server", async function(req, res){
 
     res.status(200).end();
 })
+
+app.post("/check_phone", async function(req, res){
+
+    let phone = req.body.phone;
+    console.log(phone);
+    let storedPhone = "5491163976590"
+
+    if(phone === storedPhone){
+        console.log("Phone found")
+        res.status(200).end();
+    } else {
+        console.log("wrong phone")
+        res.status(404).end();
+    }
+
+
+});

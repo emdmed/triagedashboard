@@ -8,3 +8,13 @@ const questions = {
     chestPain: "¿Tiene o tuvo dolor de pecho en día de hoy?",
     hematemesis: "¿Ha vomitado sangre en los últimos 2 días?"
 }
+
+const spanishSymptoms = {
+    fever: "Fiebre",
+    cough: "Tos",
+    abdominalPain: "Dolor abdominal",
+    throatPain: "Dolor de garganta",
+    runnyNose: "Mocos por la nariz",
+    urinatingPain: "Ardor al orinar",
+    diarrhea: "Diarrea"
+}
