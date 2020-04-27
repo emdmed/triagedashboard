@@ -7,9 +7,9 @@ const api_handler =  require("./handlers/api_handler");
 const test_patient = require("./test_objects/test_patient");
 
 //DB
-//const remotemongo = "mongodb://admin:sanatorio123@ds054118.mlab.com:54118/labos";
+const remotemongo = "mongodb://admin:sanatorio123@ds054118.mlab.com:54118/labos";
 //connect to mongoose
-//mongoose.connect(remotemongo, {useNewUrlParser: true});
+mongoose.connect(remotemongo, {useNewUrlParser: true});
 
 const server = require("http").createServer(app);
 
@@ -55,6 +55,7 @@ app.get("/patient_list", async function(req, res){
     res.send(patientList).status(200).end();
 })
 
+//admin side
 app.post("/send_patient_to_server", async function(req, res){
     let patient = req.body;
     console.log("received patient ", patient);
@@ -65,22 +66,36 @@ app.post("/send_patient_to_server", async function(req, res){
     //send scored patient to patient list
     await api_handler.addPatientToPatientList(scoredPatient);
 
-    res.status(200).end();
+    //send scored patient to patient db
+    let saved_user = await db_handler.createPatient(scoredPatient);
+
+    res.send(saved_user).status(200).end();
 })
+
+//patient side
+app.post("/update_patient_in_db", async function(req, res){
+    let patient = req.body;
+
+    //update
+    let updated = await db_handler.updatePatient(patient);
+    if(updated === true){
+        res.status(200).end();
+    } else if (updated === false){
+        res.status(404).end();
+    }
+})
+
 
 app.post("/check_phone", async function(req, res){
 
     let phone = req.body.phone;
-    console.log(phone);
-    let storedPhone = "5491163976590"
 
-    if(phone === storedPhone){
-        console.log("Phone found")
-        res.status(200).end();
+    let found = await db_handler.checkPatientPhone(phone);
+    if(found === false){
+        res.stastus(404).end();
     } else {
-        console.log("wrong phone")
-        res.status(404).end();
+        res.send(found[0]).status(200).end();
     }
 
-
 });
+

@@ -80,7 +80,7 @@ $("body").on("click", "#init_sintomas", function(){
 
     console.log(patient_example);
 
-    patient_example.info.phone = phone;
+    patient_example.info.phone = parseInt(phone);
 
     //send phone to db and check if it exists
     $.ajax({
@@ -89,7 +89,9 @@ $("body").on("click", "#init_sintomas", function(){
         data: {phone: patient_example.info.phone},
         success: function(res){
             console.log(res);
+            patient_example = res;
 
+            console.log("Received patient ", patient_example.info)
             //if succes render symptoms ui
             renderSymptomsFrontend();
         }
@@ -279,6 +281,17 @@ $("body").on("click", "#end_symptom_detail", function(){
     //reset modal
     $("#symptom_details_modal").find("modal-body").empty();
     $("#symptom_details_modal").modal("hide");
+
+    //send updated patient
+    $.ajax({
+        url: "/update_patient_in_db",
+        method: "POST",
+        contentType: "application/json",
+        data: JSON.stringify(patient_example),
+        success: function(res){
+            alert("Patient updated in db");
+        }
+    })
 })
 
 //finish loop
