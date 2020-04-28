@@ -304,8 +304,19 @@ $("body").on("click", "#end_symptoms", function(){
         contentType: "application/JSON",
         data: JSON.stringify(patient_example),
         success: function(res){
-            console.log(res);
-            alert("Paciente enviado correctamente");
+            let patient = res;
+            console.log(patient);
+            $("#symptoms_here").empty()
+
+            //render patient number
+
+            $("#symptoms_here").append(`
+                <h2>Por favor espere a se atendido</h2>
+                <h3>Su número de identificacion es:</h3>
+                <h1 class="text-center">${patient.number}</h1>
+
+            `)
+            
         }
     })
 })

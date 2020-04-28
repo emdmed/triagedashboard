@@ -8,7 +8,8 @@ var PatientModel= mongoose.Schema({
         gender: String,
         age: {required: true, type: Number},
         phone: {required: true, type: Number},
-        date: {required: true, type: Date}
+        date: {required: true, type: Date},
+        number: Number
     },
     score: Number,
     ruleOut: {

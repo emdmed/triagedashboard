@@ -5,6 +5,7 @@ const mongoose = require("mongoose")
 const db_handler =  require("./handlers/db_handler");
 const api_handler =  require("./handlers/api_handler");
 const test_patient = require("./test_objects/test_patient");
+let patientNumber = 0;
 
 //DB
 const remotemongo = "mongodb://admin:sanatorio123@ds054118.mlab.com:54118/labos";
@@ -61,14 +62,15 @@ app.post("/send_patient_to_server", async function(req, res){
     let patient = req.body;
     console.log("Patient received");
 
-    //send to api handler here
-    //let scoredPatient = await api_handler.scorePatient(patient);
-    //await scoredPatient;
+    //assign a number between 1 and 100
+    if(patientNumber === 1000){
+        patientNumber = 0
+    }
+    let number = patientNumber+1
+    patient.info.number = number
+    patientNumber = number;
 
-    //send scored patient to patient list
-    //await api_handler.addPatientToPatientList(scoredPatient);
-
-    //send scored patient to patient db
+    //send  patient to patient db
     let saved_user = await db_handler.createPatient(patient);
 
     res.send(saved_user).status(200).end();
@@ -83,11 +85,8 @@ app.post("/update_patient_in_db", async function(req, res){
 
     //update
     let updated = await db_handler.updatePatient(scoredPatient);
-    if(updated === true){
-        res.status(200).end();
-    } else if (updated === false){
-        res.status(404).end();
-    }
+    console.log(updated)
+    res.send({number: updated}).status(200).end();
 })
 
 

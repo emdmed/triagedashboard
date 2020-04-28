@@ -1,9 +1,10 @@
 var Patient = {
     info: {
         gender: false,
-        age: 50,
-        phone: 5491159724688,
-        date: new Date()
+        age: false,
+        phone: false,
+        date: false,
+        number: null
     },
     ruleOut: {
         intensiveCareInLastMonth: false,

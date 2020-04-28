@@ -27,9 +27,9 @@ async function checkPatientPhone(phone){
 async function updatePatient(patient){
     console.log("dbhandler - updated patient ", patient)
     try{
-        await PatientModel.findOneAndUpdate({"info.phone": patient.info.phone}, patient, {useFindAndModify: false});
+        let updated = await PatientModel.findOneAndUpdate({"info.phone": patient.info.phone}, patient, {useFindAndModify: false});
         console.log("Success");
-        return true
+        return updated.info.number
     }catch(err){
         return false
     }
