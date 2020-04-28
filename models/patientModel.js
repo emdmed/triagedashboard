@@ -10,6 +10,7 @@ var PatientModel= mongoose.Schema({
         phone: {required: true, type: Number},
         date: {required: true, type: Date}
     },
+    score: Number,
     ruleOut: {
         intensiveCareInLastMonth: Boolean,
         cancer: Boolean,

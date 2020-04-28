@@ -28,6 +28,7 @@ function requestPatientExample(){
         success: function(res){
             let data = res
             let priority_class;
+            let pendingTriageBadge = `<img src="./images/triagix/correct.png" height="20px">`
 
             $("#patient_cards_here").empty();
 
@@ -50,6 +51,8 @@ function requestPatientExample(){
                     priority_class = "border-primary"
                 } else if(element.score > 60){
                     priority_class = "border-danger"
+                }else if (element.score === undefined){
+                    pendingTriageBadge = `<img src="./images/triagix/timer.png" height="20px">`
                 }
 
                 //set waiting time
@@ -62,11 +65,14 @@ function requestPatientExample(){
 
                 $("#patient_cards_here").append(`
                 
-                    <div class="card text-center mx-auto ${priority_class}" id="${element.info.phone}">
-                        <div class="card-body text-center">
+                    <div class="card text-center mx-auto ${priority_class} p-0" id="${element.info.phone}">
+                        <div class="card-body text-center p-1">
                             <div class="form-row align-items-center">
                                 <div class="col-auto pl-3 pr-3 ">
-                                    <h4>${element.info.age} años</h4>
+                                    <h4 class="m-0">${element.info.age} años</h4>
+                                </div>
+                                <div class="col-auto pl-2 pr-2">
+                                    ${pendingTriageBadge}
                                 </div>
                                 <div class="col-auto pl-3 pr-3">
                                     <p class="card-text"><small class="text-muted">Esperando ${waitingTime}</small></p>
@@ -113,6 +119,7 @@ $("body").on("click", ".getPatientList_btn", function(){
         success: function(res){
             let data = res
             let priority_class;
+            let pendingTriageBadge = `<img src="./images/triagix/correct.png" height="20px">`;
 
             $("#patient_cards_here").empty();
 
@@ -120,7 +127,7 @@ $("body").on("click", ".getPatientList_btn", function(){
             let orderedData = data.sort((a,b) =>  b.score-a.score)
 
             console.log("data ", data);
-            //console.log("Ordered data ", orderedData);
+            console.log("Ordered data ", orderedData);
 
      
 
@@ -132,6 +139,8 @@ $("body").on("click", ".getPatientList_btn", function(){
                     priority_class = "border-primary"
                 } else if(element.score > 60){
                     priority_class = "border-danger"
+                }else if (element.score === undefined){
+                    pendingTriageBadge = `<img src="./images/triagix/timer.png" height="20px">`
                 }
 
                 //set waiting time
@@ -142,11 +151,14 @@ $("body").on("click", ".getPatientList_btn", function(){
 
                 $("#patient_cards_here").append(`
                 
-                    <div class="card text-center mx-auto ${priority_class}" id="${element.info.phone}">
-                        <div class="card-body text-center">
+                    <div class="card text-center mx-auto ${priority_class} p-0" id="${element.info.phone}">
+                        <div class="card-body text-center p-1">
                             <div class="form-row align-items-center">
                                 <div class="col-auto pl-3 pr-3 ">
-                                    <h4>${element.info.age} años</h4>
+                                    <h4 class="m-0">${element.info.age} años</h4>
+                                </div>
+                                <div class="col-auto pl-2 pr-2">
+                                    ${pendingTriageBadge}
                                 </div>
                                 <div class="col-auto pl-3 pr-3">
                                     <p class="card-text"><small class="text-muted">Esperando ${waitingTime}</small></p>

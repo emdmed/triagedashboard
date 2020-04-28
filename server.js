@@ -59,16 +59,17 @@ app.get("/patient_list", async function(req, res){
 //admin side
 app.post("/send_patient_to_server", async function(req, res){
     let patient = req.body;
-    console.log("received patient ", patient);
+    console.log("Patient received");
 
     //send to api handler here
-    let scoredPatient = await api_handler.scorePatient(patient);
+    //let scoredPatient = await api_handler.scorePatient(patient);
+    //await scoredPatient;
 
     //send scored patient to patient list
-    await api_handler.addPatientToPatientList(scoredPatient);
+    //await api_handler.addPatientToPatientList(scoredPatient);
 
     //send scored patient to patient db
-    let saved_user = await db_handler.createPatient(scoredPatient);
+    let saved_user = await db_handler.createPatient(patient);
 
     res.send(saved_user).status(200).end();
 })
@@ -77,8 +78,11 @@ app.post("/send_patient_to_server", async function(req, res){
 app.post("/update_patient_in_db", async function(req, res){
     let patient = req.body;
 
+    let scoredPatient = await api_handler.scorePatient(patient);
+    await scoredPatient
+
     //update
-    let updated = await db_handler.updatePatient(patient);
+    let updated = await db_handler.updatePatient(scoredPatient);
     if(updated === true){
         res.status(200).end();
     } else if (updated === false){

@@ -1,6 +1,6 @@
 const scorePatient = (patient)=>{
 
-    console.log("before dx: " , patient.ruleOut)
+    console.log("Scoring...");
 
     let activeSypmtoms = [];
 
@@ -23,8 +23,6 @@ const scorePatient = (patient)=>{
     } else if (patient.info.age > 70){
         patient.score = 60;
     }
-
-    console.log("Patient age: ", patient.info.age)
 
     //check symptoms
     for(key in patient.symptoms){
