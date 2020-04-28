@@ -4,7 +4,8 @@ var Patient = {
         age: false,
         phone: false,
         date: false,
-        number: null
+        number: null,
+        nomobile: false
     },
     ruleOut: {
         intensiveCareInLastMonth: false,

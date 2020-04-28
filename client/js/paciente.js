@@ -78,8 +78,6 @@ $("body").on("click", "#init_sintomas", function(){
 
     let phone = $("#phoneNumber").val();
 
-    console.log(patient_example);
-
     patient_example.info.phone = parseInt(phone);
 
     //send phone to db and check if it exists
@@ -94,6 +92,9 @@ $("body").on("click", "#init_sintomas", function(){
             console.log("Received patient ", patient_example.info)
             //if succes render symptoms ui
             renderSymptomsFrontend();
+        },
+        error: function(res){
+            alert("El telefono solicitado no se encuentra registrado en la guardia.")
         }
     })
 

@@ -5,13 +5,22 @@ const db_handler = {
     createPatient,
     checkPatientPhone,
     updatePatient,
-    getPatientList
+    getPatientList,
+    deletePatient
 }
 
 
 async function createPatient(patient, callback){
-    let created_patient = await PatientModel.create(patient);
-    return created_patient;
+    let duplicatedPhone = await checkPatientPhone(patient.info.phone);
+    console.log("duplicatedphonevar: ", duplicatedPhone);
+    if(duplicatedPhone === false){
+        let created_patient = await PatientModel.create(patient);
+        return created_patient;
+    } else {
+        console.log("Duplicated phone")
+        return false;
+    }
+
 }
 
 async function checkPatientPhone(phone){
@@ -38,6 +47,12 @@ async function updatePatient(patient){
 async function getPatientList(){
     let patientList = await PatientModel.find();
     return patientList;
+}
+
+async function deletePatient(phone){
+    let deleted = await PatientModel.findOneAndDelete({"info.phone": phone});
+    console.log(deleted);
+    
 }
 
 module.exports = db_handler;

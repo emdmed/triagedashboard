@@ -66,12 +66,35 @@ app.post("/send_patient_to_server", async function(req, res){
     if(patientNumber === 1000){
         patientNumber = 0
     }
-    let number = patientNumber+1
-    patient.info.number = number
-    patientNumber = number;
 
-    //send  patient to patient db
-    let saved_user = await db_handler.createPatient(patient);
+    let number = patientNumber+1
+    patientNumber = number;
+    patient.info.number = number
+
+    let saved_user;
+    let detectRuleOutTrue = false;
+
+    for(key in patient.ruleOut){
+        if(patient.ruleOut[key] === true){
+            //score ruled out patient
+            saved_user = api_handler.scorePatient(patient);
+            let saved = await db_handler.createPatient(saved_user);
+            if(saved === false){
+                res.send({message: "Duplicated phone in db"}).status(400).end();
+            }
+            detectRuleOutTrue = true
+        } else {
+    
+        }
+    }
+
+    if(detectRuleOutTrue === false){
+        //wait for patient triage to score
+        saved_user = await db_handler.createPatient(patient);
+        if(saved_user === false){
+            res.send({message: "Duplicated phone in db"}).status(400).end();
+        }
+    }
 
     res.send(saved_user).status(200).end();
 })
@@ -96,10 +119,18 @@ app.post("/check_phone", async function(req, res){
 
     let found = await db_handler.checkPatientPhone(phone);
     if(found === false){
-        res.stastus(404).end();
+        res.status(404).end();
     } else {
         res.send(found[0]).status(200).end();
     }
-
 });
+
+app.post("/delete_patient", async function(req, res){
+    let phone = req.body.phone;
+
+    let deleted = await db_handler.deletePatient(phone);
+    console.log(deleted);
+
+    res.status(200).end();
+})
 
