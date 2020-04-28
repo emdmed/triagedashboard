@@ -129,6 +129,8 @@ $("body").on("click", "#abdominalPain", function(){
         $(this).attr("class", "btn btn-primary");
         patient_example.symptoms.abdominalPain.isPresent = true;
 
+        let buttonHeight = "18.5vh"
+
         // launch symptoms details
         //()modal body is already empty)
         //append html
@@ -136,10 +138,10 @@ $("body").on("click", "#abdominalPain", function(){
         $("#symptom_details_modal").find(".modal-title").text("Indique la zona donde le duela más")
         $("#symptom_details_modal").find(".modal-body").append(`
 
-            <div class="container-fluid text-center mx-auto p-0">
-            <img src="./images/triagix/abdomen3.png" class="abdomen-image">
+            <div class="container-fluid text-center mx-auto ">
+            <img src="./images/triagix/abdomen4.png" class="abdomen-image mx-auto">
 
-                <div class="row text-center mx-auto" style="height: 16vh">
+                <div class="row text-center mx-auto" style="height: ${buttonHeight}">
                     <div class="col text-center mx-auto p-0">
                         <button class="btn btn-outline-primary-sm transparent btn-block mx-auto full-size-button abdomen" id="one">uno</button>
                     </div>
@@ -147,11 +149,11 @@ $("body").on("click", "#abdominalPain", function(){
                         <button class="btn btn-outline-primary-sm transparent btn-block mx-auto full-size-button abdomen " id="two">dos</button>
                     </div>    
                     <div class="col text-center mx-auto p-0">
-                        <button class="btn btn-outline-primary transparent btn-block mx-auto full-size-button abdomen" id="three">tres</button>
+                        <button class="btn btn-outline-primary-sm transparent btn-block mx-auto full-size-button abdomen" id="three">tres</button>
                     </div>
                 </div>
 
-                <div class="row text-center mx-auto" style="height: 16vh">
+                <div class="row text-center mx-auto" style="height: ${buttonHeight}">
                     <div class="col text-center mx-auto p-0">
                         <button class="btn btn-outline-primary-sm transparent btn-block mx-auto full-size-button abdomen" id="four">cuatro</button>
                     </div>
@@ -163,7 +165,7 @@ $("body").on("click", "#abdominalPain", function(){
                     </div>
                 </div>
 
-                <div class="row text-center mx-auto" style="height: 16vh">
+                <div class="row text-center mx-auto" style="height: ${buttonHeight}">
                     <div class="col text-center mx-auto p-0">
                         <button class="btn btn-outline-primary-sm transparent btn-block mx-auto full-size-button abdomen" id="seven">siete</button>
                     </div>

@@ -18,7 +18,7 @@ PATIENT FRONTEND
 
 BUGSSSS
 [] - admin panel, patient cards copy border color from others when refresh
-[] - frontend bug on admin panel "esperando unos segundos" fixed in patient card
+[] - frontend bug on admin panel "esperando unos segundos" in patient card
 
 DONE
 [x] - re render default modal when modal is closed
