@@ -12,11 +12,11 @@ console.log(moment().format('MMMM Do YYYY, h:mm:ss a'));
 requestPatientList();
 
 //request patient list every x time
-/*
+
 setInterval(() => {
     requestPatientList();
 }, 5000);
-*/
+
 
 function requestPatientExample(){
     $.ajax({
@@ -208,6 +208,8 @@ function requestPatientList(){
             let pendingTriageBadge = `<img src="./images/triagix/correct.png" height="20px">`;
 
             $("#patient_cards_here").empty();
+
+
 
             //order data by data.score
             let orderedData = data.sort((a,b) =>  b.score-a.score)

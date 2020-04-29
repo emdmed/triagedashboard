@@ -314,7 +314,7 @@ $("body").on("click", "#end_symptoms", function(){
             //render patient number
 
             $("#symptoms_here").append(`
-                <h2>Por favor espere a se atendido</h2>
+                <h2>Por favor espere a ser atendido</h2>
                 <h3>Su número de identificacion es:</h3>
                 <h1 class="text-center">${patient.number}</h1>
 
