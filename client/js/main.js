@@ -218,54 +218,67 @@ function requestPatientList(){
 
                 console.log("score ", element.score)
 
+                //set waiting time
+                let waitingTime;
+                moment.locale('es');
+                waitingTime = moment().startOf(element.info.date).fromNow(); 
+          
+
                 //set card color according priority score
                 if(element.score >= 0 && element.score < 30){
-                    priority_class = "border-success"
+                    priority_class = "border-success";
+                    renderPatientCard(element, priority_class, pendingTriageBadge, waitingTime);
                 } else if(element.score >= 30 && element.score < 60){
-                    priority_class = "border-primary"
+                    priority_class = "border-primary";
+                    renderPatientCard(element, priority_class, pendingTriageBadge, waitingTime);
                 } else if(element.score > 60){
-                    priority_class = "border-danger"
-                }else if (element.score === undefined){
-                    priority_class = "border-dark"
-                    pendingTriageBadge = `<img src="./images/triagix/timer.png" height="20px">`
+                    priority_class = "border-danger";
+                    renderPatientCard(element, priority_class, pendingTriageBadge, waitingTime);
                 }
+            });
 
+            orderedData.forEach(element=>{
                 //set waiting time
                 let waitingTime;
                 moment.locale('es');
                 waitingTime = moment().startOf(element.info.date).fromNow(); 
 
-                console.log("priority class", priority_class)
-
-                $("#patient_cards_here").append(`
-                
-                    <div class="card text-center mx-auto ${priority_class} p-0 m-1" id="${element.info.phone}">
-                        <div class="card-body text-center p-1">
-                            <div class="form-row align-items-center">
-                                <div class="col-auto pl-3 pr-3 ">
-                                    <p class="m-0">Nro ${element.info.number}</p>
-                                </div>
-                                <div class="col-auto pl-3 pr-3 ">
-                                    <h4 class="m-0">${element.info.age} años</h4>
-                                </div>
-                                <div class="col-auto pl-2 pr-2">
-                                    ${pendingTriageBadge}
-                                </div>
-                                <div class="col-auto pl-3 pr-3">
-                                    <p class="card-text"><small class="text-muted">Esperando ${waitingTime}</small></p>
-                                </div>
-                                <div class="col-auto pl-3 pr-3">
-                                    <a class="btn btn-primary-sm" href="https://web.whatsapp.com/send?phone=${element.info.phone}&text=https://192.168.0.50:3000/paciente">enviar triage</a>
-                                    <button class="btn btn-outline-primary-sm delete_patient" id="${element.info.phone}" >Atendido</button>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-
-                `)
-            });
+                if(element.score === undefined){
+                    priority_class = "border-dark"
+                    pendingTriageBadge = `<img src="./images/triagix/timer.png" height="20px">`
+                    renderPatientCard(element, priority_class, pendingTriageBadge, waitingTime);
+                }
+            })
         }
     })
+}
+
+function renderPatientCard(element, priority_class, pendingTriageBadge, waitingTime){
+    $("#patient_cards_here").append(`
+                
+    <div class="card text-center mx-auto ${priority_class} p-0 m-1" id="${element.info.phone}">
+        <div class="card-body text-center p-1">
+            <div class="form-row align-items-center">
+                <div class="col-auto pl-3 pr-3 ">
+                    <p class="m-0">Nro ${element.info.number}</p>
+                </div>
+                <div class="col-auto pl-3 pr-3 ">
+                    <h4 class="m-0">${element.info.age} años</h4>
+                </div>
+                <div class="col-auto pl-2 pr-2">
+                    ${pendingTriageBadge}
+                </div>
+                <div class="col-auto pl-3 pr-3">
+                    <p class="card-text"><small class="text-muted">Esperando ${waitingTime}</small></p>
+                </div>
+                <div class="col-auto pl-3 pr-3">
+                    <a class="btn btn-primary-sm" href="https://web.whatsapp.com/send?phone=${element.info.phone}&text=https://192.168.0.50:3000/paciente">enviar triage</a>
+                    <button class="btn btn-outline-primary-sm delete_patient" id="${element.info.phone}" >Atendido</button>
+                </div>
+            </div>
+        </div>
+    </div>
+    `)
 }
 
 $("body").on("click", ".delete_patient", function(){

@@ -11,6 +11,7 @@ ADMIN FRONTEND
 [] - patient id number, link it to a name stored only on the admin frontend (important?)
 [x] - if ruleout, do not request patient triage and patient card should be red
 
+
 PATIENT FRONTEND
 [x]  fix abdomen image (crop from arm pits, navel in the middle)
 [x] - handle no phone found on patient frontend
@@ -21,6 +22,7 @@ BUGSSSS
 [x] - admin panel, patient cards copy border color from others when refresh
 [] - frontend bug on admin panel "esperando unos segundos" in patient card
 [] -  server bug when assigning patient number
+[x] - undefined score patients are rendered first !!
 
 DONE
 [x] - re render default modal when modal is closed
