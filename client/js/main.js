@@ -1,7 +1,6 @@
+let triagixweb = "www.google.com"
+
 //request patient exmple onload
-
-// LINK TO SEND WHATSAPP DIRECTLY FROM FRONTEND https://web.whatsapp.com/send?phone=PHONENUMBER
-
 let PATIENT_EXAMPLE_; //never write data here
 let patient_example; //write on this one only
 console.log("main js loaded")
@@ -11,11 +10,10 @@ console.log(moment().format('MMMM Do YYYY, h:mm:ss a'));
 //request list
 requestPatientList();
 
-//request patient list every x time
-
+//request patient list every 30s time
 setInterval(() => {
     requestPatientList();
-}, 5000);
+}, 30000);
 
 
 function requestPatientExample(){
@@ -221,7 +219,7 @@ function requestPatientList(){
                 //set waiting time
                 let waitingTime;
                 moment.locale('es');
-                waitingTime = moment().startOf(element.info.date).fromNow(); 
+                waitingTime = moment(element.info.date).startOf().fromNow(); 
           
 
                 //set card color according priority score
@@ -241,7 +239,7 @@ function requestPatientList(){
                 //set waiting time
                 let waitingTime;
                 moment.locale('es');
-                waitingTime = moment().startOf(element.info.date).fromNow(); 
+                waitingTime = moment(element.info.date).startOf().fromNow(); 
 
                 if(element.score === undefined){
                     priority_class = "border-dark"
@@ -272,7 +270,7 @@ function renderPatientCard(element, priority_class, pendingTriageBadge, waitingT
                     <p class="card-text"><small class="text-muted">Esperando ${waitingTime}</small></p>
                 </div>
                 <div class="col-auto pl-3 pr-3">
-                    <a class="btn btn-primary-sm" href="https://web.whatsapp.com/send?phone=${element.info.phone}&text=https://192.168.0.50:3000/paciente">enviar triage</a>
+                    <a class="btn btn-primary-sm" href="https://web.whatsapp.com/send?phone=${element.info.phone}&text=https://${triagixweb}">enviar triage</a>
                     <button class="btn btn-outline-primary-sm delete_patient" id="${element.info.phone}" >Atendido</button>
                 </div>
             </div>
