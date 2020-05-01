@@ -255,7 +255,7 @@ function renderPatientCard(element, priority_class, pendingTriageBadge, waitingT
                     <p class="card-text"><small class="text-muted">Esperando ${waitingTime}</small></p>
                 </div>
                 <div class="col-auto pl-3 pr-3">
-                    <a class="btn btn-primary-sm" href="https://web.whatsapp.com/send?phone=${element.info.phone}&text=https://${triagixweb}/paciente">enviar triage</a>
+                    <a class="btn btn-primary-sm" href="https://web.whatsapp.com/send?phone=${element.info.phone}&text=Hola%20porfavor%20complete%20el%20ingreso%20a%20la%20guardia%20con%20el%20siguiente%20link%20https://${triagixweb}/paciente">enviar triage</a>
                     <button class="btn btn-outline-primary-sm delete_patient" id="${element.info.phone}" >Atendido</button>
                 </div>
             </div>
