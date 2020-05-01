@@ -178,9 +178,9 @@ $("body").on("click", "#abdominalPain", function(){
                 </div>
                 <hr>
                 <p>¿Hace cuántos días?</p>
-                <button class="btn btn-primary-sm abd_evolution" id="1">1 día o menos</button>
-                <button class="btn btn-primary-sm abd_evolution" id="3">de 2 a 3 días</button>
-                <button class="btn btn-primary-sm abd_evolution" id="4">mas de 3 días</button>
+                <button class="btn btn-outline-primary-sm abd_evolution" id="1">1 día o menos</button>
+                <button class="btn btn-outline-primary-sm abd_evolution" id="3">de 2 a 3 días</button>
+                <button class="btn btn-outline-primary-sm abd_evolution" id="4">mas de 3 días</button>
             </div>
         `)
 
@@ -209,6 +209,16 @@ $("body").on("click", ".abdomen", function(){
 
 $("body").on("click", ".abd_evolution", function(){
     let id = parseInt($(this).attr("id"));
+    
+    let thisClass = $(this).attr("class");
+    if(thisClass === "btn btn-outline-primary-sm abd_evolution"){
+        $(".abd_evolution").attr("class", "btn btn-outline-primary-sm abd_evolution")
+        $(this).attr("class", "btn btn-primary-sm abd_evolution")
+    } else if(thisClass === "btn btn-primary-sm abd_evolution" ){
+        $(".abd_evolution").attr("class", "btn btn-outline-primary-sm abd_evolution")
+        $(this).attr("class", "btn btn-outline-primary-sm abd_evolution")
+    }
+
     if(id === 1){
         patient_example.symptoms.abdominalPain.durationInDays = 1;
     }else if (id === 3){
@@ -285,6 +295,7 @@ $("body").on("click", "#end_symptom_detail", function(){
     $("#symptom_details_modal").modal("hide");
 
     //send updated patient
+    /*
     $.ajax({
         url: "/update_patient_in_db",
         method: "POST",
@@ -293,7 +304,7 @@ $("body").on("click", "#end_symptom_detail", function(){
         success: function(res){
             alert("Patient updated in db");
         }
-    })
+    })*/
 })
 
 //finish loop

@@ -1,5 +1,5 @@
 const config = {
-    weburl = {
+    weburl: {
         test: "http://localhost:3000",
         production: ""
     }
