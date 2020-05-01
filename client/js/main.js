@@ -1,11 +1,8 @@
 let triagixweb = "www.google.com"
 
-//request patient exmple onload
+//request patient example onload
 let PATIENT_EXAMPLE_; //never write data here
 let patient_example; //write on this one only
-console.log("main js loaded")
-moment.locale('es')
-console.log(moment().format('MMMM Do YYYY, h:mm:ss a'));
 
 //request list
 requestPatientList();
@@ -14,7 +11,6 @@ requestPatientList();
 setInterval(() => {
     requestPatientList();
 }, 30000);
-
 
 function requestPatientExample(){
     $.ajax({
@@ -159,15 +155,8 @@ $('#clinic_triage_modal').on('hidden.bs.modal', function () {
 });
 
 $("body").on("click", "#end_patient_modal_btn", function(){
-    //continue
-
-    //avoid writing on PATIENT_EXAMPLE_
-    //patient_example = PATIENT_EXAMPLE_;
 
     console.log("Seding patient: ", patient_example);
-
-    //nomobile render triage on admin panel
-
 
     $.ajax({
         url: "/send_patient_to_server",
@@ -195,7 +184,6 @@ $("body").on("click", "#end_patient_modal_btn", function(){
     })
 })
 
-
 function requestPatientList(){
     $.ajax({
         url: "/patient_list",
@@ -206,8 +194,6 @@ function requestPatientList(){
             let pendingTriageBadge = `<img src="./images/triagix/correct.png" height="20px">`;
 
             $("#patient_cards_here").empty();
-
-
 
             //order data by data.score
             let orderedData = data.sort((a,b) =>  b.score-a.score)
@@ -221,7 +207,6 @@ function requestPatientList(){
                 moment.locale('es');
                 waitingTime = moment(element.info.date).startOf().fromNow(); 
           
-
                 //set card color according priority score
                 if(element.score >= 0 && element.score < 30){
                     priority_class = "border-success";
@@ -270,7 +255,7 @@ function renderPatientCard(element, priority_class, pendingTriageBadge, waitingT
                     <p class="card-text"><small class="text-muted">Esperando ${waitingTime}</small></p>
                 </div>
                 <div class="col-auto pl-3 pr-3">
-                    <a class="btn btn-primary-sm" href="https://web.whatsapp.com/send?phone=${element.info.phone}&text=https://${triagixweb}">enviar triage</a>
+                    <a class="btn btn-primary-sm" href="https://web.whatsapp.com/send?phone=${element.info.phone}&text=https://${triagixweb}/paciente">enviar triage</a>
                     <button class="btn btn-outline-primary-sm delete_patient" id="${element.info.phone}" >Atendido</button>
                 </div>
             </div>

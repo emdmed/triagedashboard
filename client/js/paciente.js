@@ -3,7 +3,6 @@
 //2 - Update clinicTriageQuestions on frontend
 //3 - Update class and object change on frontend
 
-
 let PATIENT_EXAMPLE;
 let patient_example;
 
@@ -317,7 +316,6 @@ $("body").on("click", "#end_symptoms", function(){
                 <h2>Por favor espere a ser atendido</h2>
                 <h3>Su número de identificacion es:</h3>
                 <h1 class="text-center">${patient.number}</h1>
-
             `)
             
         }
