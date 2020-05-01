@@ -48,7 +48,7 @@ function diagnose(patient){
     //apendicitis
     if(patient.symptoms.fever.isPresent === true && patient.symptoms.abdominalPain.isPresent === true && patient.symptoms.abdominalPain.location.seven == true){
         console.log("apendicitis");
-        patient.score = 90; 
+        patient.score = 70; 
     }
 
     //colecistitis
