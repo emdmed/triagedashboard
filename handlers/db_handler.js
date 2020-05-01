@@ -1,4 +1,5 @@
 const PatientModel = require("../models/patientModel");
+const loginModule = require("./modules/login-module-db");
 
 
 const db_handler = {
@@ -6,7 +7,8 @@ const db_handler = {
     checkPatientPhone,
     updatePatient,
     getPatientList,
-    deletePatient
+    deletePatient,
+    login: loginModule
 }
 
 

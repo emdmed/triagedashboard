@@ -26,7 +26,7 @@ app.use(bodyParser.json());
 
 app.get("/admin", function(req, res){
     //send first the login page then admin //TODO
-    res.sendFile(__dirname + "/client/admin.html")
+    res.sendFile(__dirname + "/client/login.html")
 })
 
 app.get("/paciente", function(req, res){
@@ -133,4 +133,33 @@ app.post("/delete_patient", async function(req, res){
 
     res.status(200).end();
 })
+
+app.post("/login", async function(req, res){
+
+    let data = req.body;
+
+    let loggedin = await db_handler.login.login_user(data);
+    if(loggedin === true){
+
+        res.send({url: "http://localhost:3000/admin.html"}).status(200).end();
+    } else {
+        res.status(400).end();
+    }
+
+
+})
+
+
+async function registerTestUser(){
+
+    let test_user = {
+        username: "clinicapedo",
+        password: "caca"
+    }
+    
+    await db_handler.login.create_user(test_user);
+
+}
+
+//registerTestUser();
 

@@ -1,17 +1,14 @@
-
 const mongoose = require("mongoose");
 
 //SCHEMA
 
 var User= mongoose.Schema({
-username: String,
-lastname: String,
-password: {type: String, required: true},
-creation_date: Date,
-phone: Number,
-email: {type: String, required: true},
-admin: Array
+    username: {type: String, required: true},
+    password: {type: String, required: true},
+    creation_date: Date,
+    phone: Number,
+    email: String
 });
 
-var User = module.exports = mongoose.model("User", User);
+var User = module.exports = mongoose.model("TriagixUsers", User);
         

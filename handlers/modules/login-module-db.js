@@ -25,8 +25,6 @@ const login_module = {
         let email = callback.email;
         let hash;
 
-        console.log("login callback", callback, email, password)
-
         //check username
         let user_indb = await email_find(email);
         //console.log("userindb ", user_indb);
@@ -34,16 +32,16 @@ const login_module = {
 
         if (user_indb === null){
         console.log("cant login, user doesnt exist");
-        return "user does not exist";
+        return false;
         } else {
             //check password
             hash = user_indb[0].password;
             //console.log("matching password");
             let check = await check_password(password, hash);
             if(check === "match"){
-                return user_indb;
+                return true;
             } else {
-                return "wrong password";
+                return false;
             }
         }
     },

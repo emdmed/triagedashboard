@@ -4,7 +4,8 @@
 
 
 ADMIN FRONTEND
-[] - Login page for admin then send admin.html
+[x] - Login page for admin then send admin.html
+    [] - security is shit, save data on localstorage for validation when entering /admin.html
 [] - at home patient registration and triage
 
 PATIENT FRONTEND

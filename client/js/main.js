@@ -70,7 +70,7 @@ $("body").on("click", "#addTestPatient_btn", function(){
 
 function render_clinic_triage(){
     $("#clinic_triage_modal").find(".modal-body").empty();
-
+    $("#clinic_triage_modal").find(".modal-body").append(`<h5 class="m-0 text-center">Por favor realice las siguientes preguntas.</h5><p>Si alguna es afirmativa por favor seleccionela, de lo contrario seleccione "Continuar"</p>`)
     let symptoms = patient_example.ruleOut;
 
     for(key1 in symptoms){

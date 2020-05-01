@@ -746,6 +746,12 @@ PAGE BANNER
   background-size: cover;
 }
 
+#loginBanner {
+  position: relative;
+  background: url("/images/bg/banner_bg.jpg") no-repeat;
+  background-size: cover;
+}
+
 .banner-content {
   padding: 150px 0px;
   padding-right: 30px;
@@ -2055,5 +2061,9 @@ CONTACT PAGE
 .transparent{
   background-color: transparent !important;
   color: transparent !important;
+}
+
+.login_form{
+  margin-top: 20%;
 }
 
