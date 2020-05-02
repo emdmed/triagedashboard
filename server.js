@@ -18,7 +18,7 @@ mongoose.connect(remotemongo, {useNewUrlParser: true});
 
 const server = require("http").createServer(app);
 
-app.use(express.static(__dirname + "/client"));
+app.use(express.static(__dirname + "/newclient"));
 
 server.listen(process.env.PORT || 3000);
 console.log("Server running...")
@@ -30,11 +30,11 @@ app.use(bodyParser.json());
 
 app.get("/admin", function(req, res){
     //send first the login page then admin //TODO
-    res.sendFile(__dirname + "/client/login.html")
+    res.sendFile(__dirname + "/newclient/login.html")
 })
 
 app.get("/paciente", function(req, res){
-    res.sendFile(__dirname + "/client/paciente.html")
+    res.sendFile(__dirname + "/newclient/paciente.html")
 })
 
 //TESTING one patient scoring

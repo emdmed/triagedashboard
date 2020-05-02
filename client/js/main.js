@@ -191,7 +191,7 @@ function requestPatientList(){
         success: function(res){
             let data = res
             let priority_class;
-            let pendingTriageBadge = `<img src="./images/triagix/correct.png" height="20px">`;
+            let pendingTriageBadge = `<img src="./images/triagix/correct.png" height="20px" class="px-4">`;
 
             $("#patient_cards_here").empty();
 
@@ -211,13 +211,13 @@ function requestPatientList(){
                 //set card color according priority score
                 if(element.score >= 0 && element.score < 30){
                     priority_class = "border-success";
-                    renderPatientCard(element, priority_class, pendingTriageBadge, waitingTime);
+                    renderNewDashboardPatientCard(element, priority_class, pendingTriageBadge, waitingTime);
                 } else if(element.score >= 30 && element.score < 60){
                     priority_class = "border-primary";
-                    renderPatientCard(element, priority_class, pendingTriageBadge, waitingTime);
+                    renderNewDashboardPatientCard(element, priority_class, pendingTriageBadge, waitingTime);
                 } else if(element.score > 60){
                     priority_class = "border-danger";
-                    renderPatientCard(element, priority_class, pendingTriageBadge, waitingTime);
+                    renderNewDashboardPatientCard(element, priority_class, pendingTriageBadge, waitingTime);
                 }
             });
 
@@ -229,8 +229,8 @@ function requestPatientList(){
 
                 if(element.score === undefined){
                     priority_class = "border-dark"
-                    pendingTriageBadge = `<img src="./images/triagix/timer.png" height="20px">`
-                    renderPatientCard(element, priority_class, pendingTriageBadge, waitingTime);
+                    pendingTriageBadge = `<img src="./images/triagix/timer.png" height="20px" class="px-4">`
+                    renderNewDashboardPatientCard(element, priority_class, pendingTriageBadge, waitingTime);
                 }
             })
         }
@@ -264,6 +264,39 @@ function renderPatientCard(element, priority_class, pendingTriageBadge, waitingT
     </div>
     `)
 }
+
+function renderNewDashboardPatientCard(element, priority_class, pendingTriageBadge, waitingTime){
+    $("#patient_cards_here").append(`
+         
+        <div class="card shadow mb-2 ${priority_class}" id="${element.info.phone}">
+    
+            <div class="card-body">
+
+                <div class="row no-gutters align-items-center">
+
+                    <div class="col mr-2">
+                        <div class="text-xs font-weight-bold text-primary text-uppercase mb-1">Nro ${element.info.number}</div>
+                        <div class="h4 mb-0 font-weight-bold text-gray-800">${element.info.age} años</div>
+                    </div>
+
+                    <div class="col mr-2">
+                        <div class="font-weight-bold mb-1">Esperando ${waitingTime}</div>
+                    </div>
+
+                    <div class="col-auto">
+                    ${pendingTriageBadge}
+                    <a class="btn btn-primary" href="https://web.whatsapp.com/send?phone=${element.info.phone}&text=Hola%20porfavor%20complete%20el%20ingreso%20a%20la%20guardia%20con%20el%20siguiente%20link%20https://${triagixweb}/paciente" >Enviar triage</a>
+                    <button class="btn btn-outline-primary delete_patient" id="${element.info.phone}">Atendido</button>
+                    </div>
+
+                </div>
+        
+            </div>
+        </div>
+
+    `)
+}
+
 
 $("body").on("click", ".delete_patient", function(){
 
