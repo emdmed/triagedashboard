@@ -66,7 +66,7 @@ $("body").on("click", "#addTestPatient_btn", function(){
 
 function render_clinic_triage(){
     $("#clinic_triage_modal").find(".modal-body").empty();
-    $("#clinic_triage_modal").find(".modal-body").append(`<h5 class="m-0 text-center">Por favor realice las siguientes preguntas.</h5><p>Si alguna es afirmativa por favor seleccionela, de lo contrario seleccione "Continuar"</p>`)
+    $("#clinic_triage_modal").find(".modal-body").append(`<h5 class="m-0 text-center">Por favor realice las siguientes preguntas.</h5><p>Si alguna es afirmativa por favor seleccionela, de lo contrario seleccione "Continuar"</p><hr>`)
     let symptoms = patient_example.ruleOut;
 
     for(key1 in symptoms){
@@ -191,12 +191,12 @@ function requestPatientList(){
         success: function(res){
             let data = res
             let priority_class;
-            let pendingTriageBadge = `<img src="./images/triagix/correct.png" height="20px">`;
+            let pendingTriageBadge = `<img src="./images/triagix/correct.png" height="20px" class="px-4">`;
 
             $("#patient_cards_here").empty();
 
             //order data by data.score
-            let orderedData = data.sort((a,b) =>  b.score < a.score ? -1:1)
+            let orderedData = data.sort((a,b) =>  b.score > a.score ? 1:-1)
             console.log("ordered patient ", orderedData);
 
             orderedData.forEach(element => {
@@ -229,7 +229,7 @@ function requestPatientList(){
 
                 if(element.score === undefined){
                     priority_class = "border-dark"
-                    pendingTriageBadge = `<img src="./images/triagix/timer.png" height="20px">`
+                    pendingTriageBadge = `<img src="./images/triagix/timer.png" height="20px" class="px-4">`
                     renderNewDashboardPatientCard(element, priority_class, pendingTriageBadge, waitingTime);
                 }
             })
@@ -286,7 +286,7 @@ function renderNewDashboardPatientCard(element, priority_class, pendingTriageBad
                     <div class="col-auto">
                     ${pendingTriageBadge}
                     <a class="btn btn-primary" href="https://web.whatsapp.com/send?phone=${element.info.phone}&text=Hola%20porfavor%20complete%20el%20ingreso%20a%20la%20guardia%20con%20el%20siguiente%20link%20https://${triagixweb}/paciente" >Enviar triage</a>
-                    <button class="btn btn-outline-primary-sm delete_patient id="${element.info.phone}">Atendido</button>
+                    <button class="btn btn-outline-primary delete_patient id="${element.info.phone}">Atendido</button>
                     </div>
 
                 </div>

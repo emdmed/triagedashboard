@@ -39,7 +39,7 @@
       <!-- Nav Item - Dashboard -->
       <li class="nav-item active">
         <br>
-        <button class="btn btn-block btn-primary" href="index.html">
+        <button class="btn btn-block btn-primary"  data-toggle="modal" data-target="#clinic_triage_modal">
           <span>Ingresar paciente</span></button>
         <button class="btn btn-block btn-primary" href="index.html">
           <span>Recargar pacientes</span></button>
@@ -95,30 +95,7 @@
               <!-- Area Chart -->
               <div class="col-xl-8 col-lg-7" id="patient_cards_here" style="overflow-y: auto; max-height: 70vh;">
 
-                <div class="card shadow mb-2">
-                  <!-- Card Body -->
-                  <div class="card-body">
 
-                    <div class="row no-gutters align-items-center">
-
-                      <div class="col mr-2">
-                        <div class="text-xs font-weight-bold text-primary text-uppercase mb-1">Nro 3</div>
-                        <div class="h4 mb-0 font-weight-bold text-gray-800">77 años</div>
-                      </div>
-                      <div class="col mr-2">
-                        <div class="font-weight-bold mb-1">Esperando hace 3 minutos</div>
-                      </div>
-
-                      <div class="col-auto">
-                        <img src="./images/triagix/correct.png" height="20px" class="px-4">
-                        <button class="btn btn-primary">Enviar triage</button>
-                        <button class="btn btn-outline-primary">Atendido</button>
-                      </div>
-
-                    </div>
-                
-                  </div>
-                </div>
               </div>
 
               <!--widgets hete-->
@@ -162,6 +139,35 @@
         </div>
       </div>
     </div>
+  </div>
+
+  
+    <!--MODALS-->
+
+    <!--Clinic triage modal-->
+    <!-- Modal -->
+    <div class="modal fade" id="clinic_triage_modal" tabindex="-1" role="dialog" aria-labelledby="exampleModalCenterTitle" aria-hidden="true">
+      <div class="modal-dialog modal-dialog-centered" role="document">
+      <div class="modal-content">
+          <div class="modal-header">
+          <h5 class="modal-title text-primary" id="exampleModalCenterTitle">Agregar paciente a Triage</h5>
+          <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+              <span aria-hidden="true">&times;</span>
+          </button>
+          </div>
+          <div class="modal-body">
+              <p>Telefono</p>
+              <input type="number" placeholder="Telefono celular" id="patient_phone" value="54911" class="form-control">
+              <br>
+              <p>Edad</p>
+              <input type="number" placeholder="Edad" id="patient_age" class="form-control">
+          </div>
+          <div class="modal-footer">
+              <button type="button" class="btn btn-secondary" data-dismiss="modal">Cerrar</button>
+              <button type="button" class="btn btn-primary" id="send_patient_btn">Continuar</button>
+          </div>
+      </div>
+      </div>
   </div>
 
   <!-- Bootstrap core JavaScript-->
