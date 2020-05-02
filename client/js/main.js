@@ -196,11 +196,12 @@ function requestPatientList(){
             $("#patient_cards_here").empty();
 
             //order data by data.score
-            let orderedData = data.sort((a,b) =>  b.score-a.score)
+            let orderedData = data.sort((a,b) =>  b.score < a.score ? -1:1)
+            console.log("ordered patient ", orderedData);
 
             orderedData.forEach(element => {
 
-                console.log("score ", element.score)
+                console.log("score ", element.score, " patient ", element.age)
 
                 //set waiting time
                 let waitingTime;
