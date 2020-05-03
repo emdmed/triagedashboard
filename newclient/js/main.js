@@ -194,6 +194,7 @@ function requestPatientList(){
             let pendingTriageBadge = `<img src="./images/triagix/correct.png" height="20px" class="px-4">`;
 
             $("#patient_cards_here").empty();
+            setWaitingPatientsNumber(data);
 
             //order data by data.score
             let orderedData = data.sort((a,b) =>  b.score > a.score ? 1:-1)
@@ -210,13 +211,13 @@ function requestPatientList(){
           
                 //set card color according priority score
                 if(element.score >= 0 && element.score < 30){
-                    priority_class = "border-success";
+                    priority_class = "border-left-success";
                     renderNewDashboardPatientCard(element, priority_class, pendingTriageBadge, waitingTime);
                 } else if(element.score >= 30 && element.score < 60){
-                    priority_class = "border-primary";
+                    priority_class = "border-left-warning";
                     renderNewDashboardPatientCard(element, priority_class, pendingTriageBadge, waitingTime);
                 } else if(element.score > 60){
-                    priority_class = "border-danger";
+                    priority_class = "border-left-danger";
                     renderNewDashboardPatientCard(element, priority_class, pendingTriageBadge, waitingTime);
                 }
             });
@@ -228,7 +229,7 @@ function requestPatientList(){
                 waitingTime = moment(element.info.date).startOf().fromNow(); 
 
                 if(element.score === undefined){
-                    priority_class = "border-dark"
+                    priority_class = "border-left-dark"
                     pendingTriageBadge = `<img src="./images/triagix/timer.png" height="20px" class="px-4">`
                     renderNewDashboardPatientCard(element, priority_class, pendingTriageBadge, waitingTime);
                 }
@@ -237,40 +238,12 @@ function requestPatientList(){
     })
 }
 
-function renderPatientCard(element, priority_class, pendingTriageBadge, waitingTime){
-    $("#patient_cards_here").append(`
-                
-    <div class="card text-center mx-auto ${priority_class} p-0 m-1" id="${element.info.phone}">
-        <div class="card-body text-center p-1">
-            <div class="form-row align-items-center">
-                <div class="col-auto pl-3 pr-3 ">
-                    <p class="m-0">Nro ${element.info.number}</p>
-                </div>
-                <div class="col-auto pl-3 pr-3 ">
-                    <h4 class="m-0">${element.info.age} años</h4>
-                </div>
-                <div class="col-auto pl-2 pr-2">
-                    ${pendingTriageBadge}
-                </div>
-                <div class="col-auto pl-3 pr-3">
-                    <p class="card-text"><small class="text-muted">Esperando ${waitingTime}</small></p>
-                </div>
-                <div class="col-auto pl-3 pr-3">
-                    <a class="btn btn-primary-sm" href="https://web.whatsapp.com/send?phone=${element.info.phone}&text=Hola%20porfavor%20complete%20el%20ingreso%20a%20la%20guardia%20con%20el%20siguiente%20link%20https://${triagixweb}/paciente">enviar triage</a>
-                    <button class="btn btn-outline-primary-sm delete_patient" id="${element.info.phone}" >Atendido</button>
-                </div>
-            </div>
-        </div>
-    </div>
-    `)
-}
-
 function renderNewDashboardPatientCard(element, priority_class, pendingTriageBadge, waitingTime){
     $("#patient_cards_here").append(`
          
-        <div class="card shadow mb-2 ${priority_class}" id="${element.info.phone}">
+        <div class="card shadow-sm mb-2 ${priority_class}" id="${element.info.phone}">
     
-            <div class="card-body">
+            <div class="card-body p-2">
 
                 <div class="row no-gutters align-items-center">
 
@@ -295,6 +268,10 @@ function renderNewDashboardPatientCard(element, priority_class, pendingTriageBad
         </div>
 
     `)
+}
+
+function setWaitingPatientsNumber(data){
+    $("#waitingPatientTitle").text(`${data.length} Pacientes en espera`);
 }
 
 

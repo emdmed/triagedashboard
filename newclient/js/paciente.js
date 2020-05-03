@@ -143,44 +143,44 @@ $("body").on("click", "#abdominalPain", function(){
 
                 <div class="row text-center mx-auto" style="height: ${buttonHeight}">
                     <div class="col text-center mx-auto p-0">
-                        <button class="btn btn-outline-primary-sm transparent btn-block mx-auto full-size-button abdomen" id="one">uno</button>
+                        <button class="btn btn-outline-primary transparent btn-block mx-auto full-size-button abdomen" id="one">uno</button>
                     </div>
                     <div class="col text-center mx-auto p-0">
-                        <button class="btn btn-outline-primary-sm transparent btn-block mx-auto full-size-button abdomen " id="two">dos</button>
+                        <button class="btn btn-outline-primary transparent btn-block mx-auto full-size-button abdomen " id="two">dos</button>
                     </div>    
                     <div class="col text-center mx-auto p-0">
-                        <button class="btn btn-outline-primary-sm transparent btn-block mx-auto full-size-button abdomen" id="three">tres</button>
+                        <button class="btn btn-outline-primary transparent btn-block mx-auto full-size-button abdomen" id="three">tres</button>
                     </div>
                 </div>
 
                 <div class="row text-center mx-auto" style="height: ${buttonHeight}">
                     <div class="col text-center mx-auto p-0">
-                        <button class="btn btn-outline-primary-sm transparent btn-block mx-auto full-size-button abdomen" id="four">cuatro</button>
+                        <button class="btn btn-outline-primary transparent btn-block mx-auto full-size-button abdomen" id="four">cuatro</button>
                     </div>
                     <div class="col text-center mx-auto p-0">
-                        <button class="btn btn-outline-primary-sm transparent btn-block mx-auto full-size-button abdomen" id="five">cinco</button>
+                        <button class="btn btn-outline-primary transparent btn-block mx-auto full-size-button abdomen" id="five">cinco</button>
                     </div>    
                     <div class="col text-center mx-auto p-0">
-                        <button class="btn btn-outline-primary-sm transparent btn-block mx-auto full-size-button abdomen" id="six">seis</button>
+                        <button class="btn btn-outline-primary transparent btn-block mx-auto full-size-button abdomen" id="six">seis</button>
                     </div>
                 </div>
 
                 <div class="row text-center mx-auto" style="height: ${buttonHeight}">
                     <div class="col text-center mx-auto p-0">
-                        <button class="btn btn-outline-primary-sm transparent btn-block mx-auto full-size-button abdomen" id="seven">siete</button>
+                        <button class="btn btn-outline-primary transparent btn-block mx-auto full-size-button abdomen" id="seven">siete</button>
                     </div>
                     <div class="col text-center mx-auto p-0">
-                        <button class="btn btn-outline-primary-sm transparent btn-block mx-auto full-size-button abdomen" id="eight">ocho</button>
+                        <button class="btn btn-outline-primary transparent btn-block mx-auto full-size-button abdomen" id="eight">ocho</button>
                     </div>    
                     <div class="col text-center mx-auto p-0">
-                        <button class="btn btn-outline-primary-sm transparent btn-block mx-auto full-size-button abdomen" id="nine">nueve</button>
+                        <button class="btn btn-outline-primary transparent btn-block mx-auto full-size-button abdomen" id="nine">nueve</button>
                     </div>
                 </div>
                 <hr>
                 <p>¿Hace cuántos días?</p>
-                <button class="btn btn-outline-primary-sm abd_evolution" id="1">1 día o menos</button>
-                <button class="btn btn-outline-primary-sm abd_evolution" id="3">de 2 a 3 días</button>
-                <button class="btn btn-outline-primary-sm abd_evolution" id="4">mas de 3 días</button>
+                <button class="btn btn-sm btn-outline-primary abd_evolution" id="1">1 día o menos</button>
+                <button class="btn btn-sm btn-outline-primary abd_evolution" id="3">de 2 a 3 días</button>
+                <button class="btn btn-sm btn-outline-primary abd_evolution" id="4">mas de 3 días</button>
             </div>
         `)
 
@@ -211,12 +211,12 @@ $("body").on("click", ".abd_evolution", function(){
     let id = parseInt($(this).attr("id"));
     
     let thisClass = $(this).attr("class");
-    if(thisClass === "btn btn-outline-primary-sm abd_evolution"){
-        $(".abd_evolution").attr("class", "btn btn-outline-primary-sm abd_evolution")
+    if(thisClass === "btn btn-outline-primary abd_evolution"){
+        $(".abd_evolution").attr("class", "btn btn-outline-primary abd_evolution")
         $(this).attr("class", "btn btn-primary-sm abd_evolution")
     } else if(thisClass === "btn btn-primary-sm abd_evolution" ){
-        $(".abd_evolution").attr("class", "btn btn-outline-primary-sm abd_evolution")
-        $(this).attr("class", "btn btn-outline-primary-sm abd_evolution")
+        $(".abd_evolution").attr("class", "btn btn-outline-primary abd_evolution")
+        $(this).attr("class", "btn btn-outline-primary abd_evolution")
     }
 
     if(id === 1){

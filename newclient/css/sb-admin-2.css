@@ -2240,7 +2240,7 @@ textarea.form-control {
 }
 
 .btn:focus, .btn.focus {
-  outline: 0;
+  outline: none !important;
   box-shadow: 0 0 0 0.2rem rgba(78, 115, 223, 0.25);
 }
 
@@ -2261,8 +2261,8 @@ fieldset:disabled a.btn {
 
 .btn-primary:hover {
   color: #fff;
-  background-color: #2e59d9;
-  border-color: #2653d4;
+  background-color: #5e3555;
+  border-color: #5e3555;
 }
 
 .btn-primary:focus, .btn-primary.focus {
@@ -10999,4 +10999,24 @@ body.sidebar-toggled footer.sticky-footer {
 
 .patient-card{
   max-width: 70%;
+}
+
+
+.full-size-button{
+  width:100%;
+  height: 100%;
+  display:block;
+}
+
+.abdomen-image{
+  position: absolute;
+  left: 50%;
+  width: 90%;
+  height: 80%;
+  transform: translate(-50%);
+}
+
+.transparent{
+  background-color: transparent !important;
+  color: transparent !important;
 }
