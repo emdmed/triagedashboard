@@ -14,7 +14,7 @@ let patientNumber = 0;
 //DB
 const remotemongo = "mongodb://admin:sanatorio123@ds054118.mlab.com:54118/labos";
 //connect to mongoose
-mongoose.connect(remotemongo, {useNewUrlParser: true});
+mongoose.connect(remotemongo, {useNewUrlParser: true, useUnifiedTopology: true});
 
 const server = require("http").createServer(app);
 

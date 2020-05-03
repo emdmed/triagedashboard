@@ -79,13 +79,19 @@ function diagnose(patient){
         } else if (patient.symptoms.throatPain.voiceChange === true){
             console.log("laringitis");
         }
-
     } 
+
+    //CVAS
+    if(patient.symptoms.throatPain.isPresent === true && patient.symptoms.fever.isPresent === true){
+        patient.score = score + 3
+        patient.info.covidAlert = true
+    }
 
     //infeccion respiratoria baja
     if(patient.symptoms.fever.isPresent === true && patient.symptoms.cough.isPresent === true){
         console.log("respiratory infection")
         patient.score = score + 15;
+        patient.info.covidAlert = true
     }
 
     //infeccion urinaria baja

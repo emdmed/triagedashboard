@@ -239,6 +239,14 @@ function requestPatientList(){
 }
 
 function renderNewDashboardPatientCard(element, priority_class, pendingTriageBadge, waitingTime){
+    let covidBadge;
+
+    if(element.info.covidAlert === true){
+        covidBadge = `<img src="./images/triagix/coronavirus.png" height="30px" class="mr-3">`
+    } else {
+        covidBadge = "";
+    }
+
     $("#patient_cards_here").append(`
          
         <div class="card shadow-sm mb-2 ${priority_class}" id="${element.info.phone}">
@@ -258,6 +266,7 @@ function renderNewDashboardPatientCard(element, priority_class, pendingTriageBad
 
                     <div class="col-auto">
                     ${pendingTriageBadge}
+                    ${covidBadge}
                     <a class="btn btn-primary" href="https://web.whatsapp.com/send?phone=${element.info.phone}&text=Hola%20porfavor%20complete%20el%20ingreso%20a%20la%20guardia%20con%20el%20siguiente%20link%20https://${triagixweb}/paciente" >Enviar triage</a>
                     <button class="btn btn-outline-primary delete_patient id="${element.info.phone}">Atendido</button>
                     </div>

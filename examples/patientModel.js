@@ -5,7 +5,8 @@ var Patient = {
         phone: false,
         date: false,
         number: null,
-        nomobile: false
+        nomobile: false,
+        covidAlert: false
     },
     ruleOut: {
         intensiveCareInLastMonth: false,
