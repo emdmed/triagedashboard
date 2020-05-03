@@ -195,6 +195,8 @@ function requestPatientList(){
 
             $("#patient_cards_here").empty();
             setWaitingPatientsNumber(data);
+            countPatientTypes(data);
+
 
             //order data by data.score
             let orderedData = data.sort((a,b) =>  b.score > a.score ? 1:-1)
@@ -304,3 +306,39 @@ $("body").on("click", ".delete_patient", function(){
         })
     }
 })
+
+function countPatientTypes(patientList){
+
+    let patientTypes = {
+        red: 0,
+        yellow: 0,
+        green: 0,
+        black: 0,
+        covid: 0
+    }
+
+    patientList.forEach(element=>{
+
+        if(element.score >= 60){
+            ++patientTypes.red + 1
+        } else if (element.score >= 30 && element.score < 60){
+            ++patientTypes.yellow + 1
+        } else if (element.score >= 0 && element.score < 30){
+            ++patientTypes.green
+        } else if(!element.score){
+            ++patientTypes.black 
+        }else {}
+
+        if (element.info.covidAlert === true){
+            console.log("covid detected")
+            ++patientTypes.covid
+        }
+
+    })
+
+    $(".redPatientsAlert").text(patientTypes.red);
+    $(".yellowPatientsAlert").text(patientTypes.yellow);
+    $(".greenPatientsAlert").text(patientTypes.green);
+    $(".blackPatientsAlert").text(patientTypes.black);
+    $(".covidAlerts_n").text(patientTypes.covid);
+}

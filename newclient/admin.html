@@ -93,12 +93,33 @@
             <div class="row">
 
               <!-- Area Chart -->
-              <div class="col-xl-8 col-lg-7" id="patient_cards_here" style="overflow-y: auto; max-height: 70vh;">
+              <div class="col-xl-8 col-lg-7 pr-3" id="patient_cards_here" style="overflow-y: auto; max-height: 70vh; border-right-color: rgb(211, 211, 211); border-right-style: solid; border-right-width: 2px;">
 
 
               </div>
+              <div class="col-auto pl-3">
+                <div class="card">
+                  <div class="card-body">
+                    <div class="btn btn-danger btn-circle redPatientsAlert">1</div>
+                    <div class="btn btn-warning btn-circle yellowPatientsAlert">1</div>
+                    <div class="btn btn-success btn-circle greenPatientsAlert">1</div>
+                    <div class="btn btn-dark btn-circle blackPatientsAlert">1</div>
+                  </div>
+                </div>
+              </div>
               <div class="col-auto">
-                <canvas id="myChart" width="200" height="200"></canvas>
+                <div class="card">
+                  <div class="card-body my-auto">
+                    <div class="row my-auto">
+                      <div class="col my-auto">
+                        <img src="./images/triagix/coronavirus.png" height="30px" class="my-auto">
+                      </div>
+                      <div class="col my-auto">
+                        <p class="covidAlerts_n my-auto">0</p>
+                      </div> 
+                    </div>
+                  </div>
+                </div>
               </div>
 
               <!--widgets here-->
