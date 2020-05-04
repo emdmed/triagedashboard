@@ -1,6 +1,4 @@
 
-[x] - send whatsapp from frontend directly
-    [] - define message + link to send
 
 
 ADMIN FRONTEND
@@ -29,3 +27,5 @@ DONE
 [x] - handle no phone found on patient frontend
 [x] - avoid 2 different triages by the same phone (on the same day?)
 [x] - atendido button
+[x] - send whatsapp from frontend directly
+    [x] - define message + link to send

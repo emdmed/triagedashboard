@@ -270,7 +270,7 @@ function renderNewDashboardPatientCard(element, priority_class, pendingTriageBad
                     ${pendingTriageBadge}
                     ${covidBadge}
                     <a class="btn btn-primary" href="https://web.whatsapp.com/send?phone=${element.info.phone}&text=Hola%20porfavor%20complete%20el%20ingreso%20a%20la%20guardia%20con%20el%20siguiente%20link%20https://${triagixweb}/paciente" >Enviar triage</a>
-                    <button class="btn btn-outline-primary delete_patient id="${element.info.phone}">Atendido</button>
+                    <button class="btn btn-outline-primary delete_patient" id="${element.info.phone}">Atendido</button>
                     </div>
 
                 </div>
