@@ -6,25 +6,34 @@ const db_handler =  require("./handlers/db_handler");
 const api_handler =  require("./handlers/api_handler");
 const test_patient = require("./test_objects/test_patient");
 const config = require("./config");
-const testing = require("./testing")
+//create patients
+const testing = require("./testing");
 
 //initial patient number id
 let patientNumber = 0;
 
-//DB
-const remotemongo = "mongodb://admin:sanatorio123@ds054118.mlab.com:54118/labos";
-//connect to mongoose
-mongoose.connect(remotemongo, {useNewUrlParser: true});
+//connectToDb();
+connectToDb();
+
+function connectToDb(){
+    try{
+        mongoose.connect(config.DB.test, {useNewUrlParser: true, useUnifiedTopology: true});
+    }catch(error){
+        console.log("Error connecting to DB, trying in 10 seconds")
+        setTimeout(() => {
+            connectToDb();
+        }, 10000);
+    }
+}
 
 const server = require("http").createServer(app);
 
 app.use(express.static(__dirname + "/client"));
+app.use(bodyParser.urlencoded({extended: true}));
+app.use(bodyParser.json());
 
 server.listen(process.env.PORT || 3000);
 console.log("Server running...")
-
-app.use(bodyParser.urlencoded({extended: true}));
-app.use(bodyParser.json());
 
 //ROUTES
 
