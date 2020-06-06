@@ -5,6 +5,9 @@ Reusability
 [] - set sanatorio logo
 [] - custom color scheme for sanatorio
 
+BACKEND
+[] - Error handling
+
 ADMIN FRONTEND
 [x] - Login page for admin then send admin.html
     [] - security is shit, save data on localstorage for validation when entering /admin.html

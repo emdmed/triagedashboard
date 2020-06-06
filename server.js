@@ -8,7 +8,7 @@ const config = require("./config");
 
 //config
 const URL = config.url.domain("dev");
-config.environment.set("production");
+config.environment.set("dev");
 config.connectToDB();
 
 console.log("url: ", URL)
