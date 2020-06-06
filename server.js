@@ -7,7 +7,15 @@ const api_handler =  require("./handlers/api_handler");
 const test_patient = require("./test_objects/test_patient");
 const config = require("./config");
 const testing = require("./testing")
+
+
+
+//config
 const URL = config.url.domain("production");
+config.environment.set("dev");
+config.connectToDB();
+
+console.log("url: ", URL)
 
 //initial patient number id
 let patientNumber = 0;

@@ -1,5 +1,5 @@
 let mongoose = require("mongoose")
-let prod = false;
+let prod = true;
 
 let config = {
     url: {domain: (domainUrl)=>{
@@ -25,13 +25,12 @@ let config = {
         }
     },
     environment: {
-        production: prod,
-        set(){
-            if(this.production === false){
+        set(env){
+            if(env === "dev"){
                 config.connectToDB = ()=>{
                     console.log("no DB")
                 }
-            }
+            } 
         }
     }
 }
