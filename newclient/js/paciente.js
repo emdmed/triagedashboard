@@ -45,6 +45,10 @@ function renderSymptomsFrontend(){
 
     `)
 
+    renderSymptomsGrid()
+
+    let column = 0;
+
     for(key1 in symptoms){
         for(key2 in spanishSymptoms){
             if(key1 === key2){
@@ -56,12 +60,14 @@ function renderSymptomsFrontend(){
                     modalLauncher = `data-toggle="modal" data-target="#symptom_details_modal"`
                 }
 
-                $("#symptoms_here").append(`
+                $("#symptom" + column).append(`
     
-                <button class="btn btn-outline-primary" ${modalLauncher} id="${key1}">${spanishSymptoms[key2]}</button>    
-                <hr>
-    
-            `)
+                    <button class="btn btn-outline-primary w-100" ${modalLauncher} id="${key1}">${spanishSymptoms[key2]}</button>    
+                    <hr>
+        
+                `)
+
+                ++column
             }
         }
     }
@@ -332,3 +338,30 @@ $("body").on("click", "#end_symptoms", function(){
         }
     })
 })
+
+function renderSymptomsGrid(){
+
+    $("#symptoms_here").append(`
+    
+        <div class="container-fluid">
+            <div class="row">
+                <div class="col" id="symptom0"></div>
+                <div class="col" id="symptom1"></div>
+            </div>
+            <div class="row">
+                <div class="col" id="symptom2"></div>
+                <div class="col" id="symptom3"></div>
+            </div>
+            <div class="row">
+                <div class="col" id="symptom4"></div>
+                <div class="col" id="symptom5"></div>
+            </div>
+            <div class="row">
+                <div class="col" id="symptom6"></div>
+                <div class="col" id="symptom7"></div>
+            </div>
+        </div>
+
+    `)
+
+}

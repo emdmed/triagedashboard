@@ -2,13 +2,14 @@ let mongoose = require("mongoose")
 
 let config = {
     url: {domain: (domainUrl)=>{
-        if(domainUrl === "production"){
-            return "production url here"
-        } else if (domainUrl === "dev"){
-            return "http://localhost:3000"
-        } else {
-            console.log("Url Error")
-        } }
+            if(domainUrl === "production"){
+                return "production url here"
+            } else if (domainUrl === "dev"){
+                return "http://localhost:3000"
+            } else {
+                console.log("Url Error")
+            } 
+        }
     },
     DB: "mongodb://admin:sanatorio123@ds054118.mlab.com:54118/labos",
     connectToDB: async function(){
