@@ -7,14 +7,10 @@ const api_handler =  require("./handlers/api_handler");
 const test_patient = require("./test_objects/test_patient");
 const config = require("./config");
 const testing = require("./testing")
+const URL = config.url.domain("production");
 
 //initial patient number id
 let patientNumber = 0;
-
-//DB
-const remotemongo = "mongodb://admin:sanatorio123@ds054118.mlab.com:54118/labos";
-//connect to mongoose
-mongoose.connect(remotemongo, {useNewUrlParser: true, useUnifiedTopology: true});
 
 const server = require("http").createServer(app);
 
@@ -114,7 +110,7 @@ app.post("/login", async function(req, res){
     let data = req.body;
     let loggedin = await db_handler.login.login_user(data);
     if(loggedin === true){
-        res.send({url: `${config.weburl.test}/admin.html`}).status(200).end();
+        res.send({url: `${URL}/admin.html`}).status(200).end();
     } else {
         res.status(400).end();
     }
