@@ -1,5 +1,4 @@
 let mongoose = require("mongoose")
-let prod = true;
 
 let config = {
     url: {domain: (domainUrl)=>{

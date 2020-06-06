@@ -1,5 +1,9 @@
 
-
+ENVIRONMENT
+Reusability
+[] - Bring sanatorio name to frontend
+[] - set sanatorio logo
+[] - custom color scheme for sanatorio
 
 ADMIN FRONTEND
 [x] - Login page for admin then send admin.html

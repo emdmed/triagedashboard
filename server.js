@@ -1,18 +1,14 @@
 const express = require("express");
 const app = express();
 const bodyParser = require("body-parser");
-const mongoose = require("mongoose")
 const db_handler =  require("./handlers/db_handler");
 const api_handler =  require("./handlers/api_handler");
 const test_patient = require("./test_objects/test_patient");
 const config = require("./config");
-const testing = require("./testing")
-
-
 
 //config
-const URL = config.url.domain("production");
-config.environment.set("dev");
+const URL = config.url.domain("dev");
+config.environment.set("production");
 config.connectToDB();
 
 console.log("url: ", URL)
