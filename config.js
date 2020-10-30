@@ -1,4 +1,5 @@
-let mongoose = require("mongoose")
+let mongoose = require("mongoose");
+let env = require("./env");
 
 let config = {
     url: {domain: (domainUrl)=>{
@@ -11,7 +12,7 @@ let config = {
             } 
         }
     },
-    DB: "mongodb://admin:sanatorio123@ds054118.mlab.com:54118/labos",
+    DB: env.dburl,
     connectToDB: async function(){
         try{
             await mongoose.connect(this.DB, {useNewUrlParser: true, useUnifiedTopology: true });
