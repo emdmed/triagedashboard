@@ -1,16 +1,23 @@
 
-[x] - send whatsapp from frontend directly
-    [] - define message + link to send
+ENVIRONMENT
+Reusability
+[] - Bring sanatorio name to frontend
+[] - set sanatorio logo
+[] - custom color scheme for sanatorio
 
+BACKEND
+[] - Error handling
 
 ADMIN FRONTEND
 [x] - Login page for admin then send admin.html
     [] - security is shit, save data on localstorage for validation when entering /admin.html
+[] - add login security with localstorage anyone entering /admin.html logins succesfully
 [] - at home patient registration and triage
 
 PATIENT FRONTEND
 
 BUGSSSS
+[] - when creating a new patient, if no rule out there is a problem in servers with headers
 [x] - admin panel, patient cards copy border color from others when refresh
 [x] - frontend bug on admin panel "esperando unos segundos" in patient card
 [x] - undefined score patients are rendered first !!
@@ -27,3 +34,5 @@ DONE
 [x] - handle no phone found on patient frontend
 [x] - avoid 2 different triages by the same phone (on the same day?)
 [x] - atendido button
+[x] - send whatsapp from frontend directly
+    [x] - define message + link to send

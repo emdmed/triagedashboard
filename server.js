@@ -1,36 +1,24 @@
 const express = require("express");
 const app = express();
 const bodyParser = require("body-parser");
-const mongoose = require("mongoose")
 const db_handler =  require("./handlers/db_handler");
 const api_handler =  require("./handlers/api_handler");
 const test_patient = require("./test_objects/test_patient");
 const config = require("./config");
-//create patients
-const testing = require("./testing");
+
+//config
+const URL = config.url.domain("dev");
+config.environment.set("production");
+config.connectToDB();
+
+console.log("url: ", URL)
 
 //initial patient number id
 let patientNumber = 0;
 
-//connectToDb();
-connectToDb();
-
-function connectToDb(){
-    try{
-        mongoose.connect(config.DB.test, {useNewUrlParser: true, useUnifiedTopology: true});
-    }catch(error){
-        console.log("Error connecting to DB, trying in 10 seconds")
-        setTimeout(() => {
-            connectToDb();
-        }, 10000);
-    }
-}
-
 const server = require("http").createServer(app);
 
-app.use(express.static(__dirname + "/client"));
-app.use(bodyParser.urlencoded({extended: true}));
-app.use(bodyParser.json());
+app.use(express.static(__dirname + "/newclient"));
 
 server.listen(process.env.PORT || 3000);
 console.log("Server running...")
@@ -39,11 +27,11 @@ console.log("Server running...")
 
 app.get("/admin", function(req, res){
     //send first the login page then admin //TODO
-    res.sendFile(__dirname + "/client/login.html")
+    res.sendFile(__dirname + "/newclient/login.html")
 })
 
 app.get("/paciente", function(req, res){
-    res.sendFile(__dirname + "/client/paciente.html")
+    res.sendFile(__dirname + "/newclient/paciente.html")
 })
 
 //TESTING one patient scoring
@@ -123,7 +111,7 @@ app.post("/login", async function(req, res){
     let data = req.body;
     let loggedin = await db_handler.login.login_user(data);
     if(loggedin === true){
-        res.send({url: `${config.weburl.test}/admin.html`}).status(200).end();
+        res.send({url: `${URL}/admin.html`}).status(200).end();
     } else {
         res.status(400).end();
     }
